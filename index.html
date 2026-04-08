@@ -593,4 +593,89 @@ function closeCart() { document.getElementById('overlay').classList.remove('open
 
 function renderCart() {
   const el = document.getElementById('cartItemsEl');
- 
+  if (cart.length === 0) {
+    el.innerHTML = `<div class="empty-cart"><div class="e-icon">🌿</div><p>${tr('emptyCart')}</p></div>`;
+    document.getElementById('orderSummary').innerHTML = '';
+    document.getElementById('checkoutBtn').disabled = true;
+    document.getElementById('btcBox').classList.remove('show');
+    return;
+  }
+  el.innerHTML = cart.map(c => `
+    <div class="cart-item">
+      <div class="ci-emoji">${c.emoji}</div>
+      <div class="ci-info">
+        <div class="ci-name">${c[lang].name}</div>
+        <div class="ci-price">$${(c.price * c.qty).toFixed(2)}</div>
+      </div>
+      <div class="ci-qty">
+        <button class="qty-btn" onclick="changeQty(${c.id},-1)">−</button>
+        <span class="qty-num">${c.qty}</span>
+        <button class="qty-btn" onclick="changeQty(${c.id},1)">+</button>
+      </div>
+    </div>`).join('');
+  const sub = cart.reduce((s,c) => s+c.price*c.qty, 0);
+  const del = 1.50, total = sub + del;
+  document.getElementById('orderSummary').innerHTML = `
+    <div class="summary-row"><span>${tr('subtotal')}</span><span>$${sub.toFixed(2)}</span></div>
+    <div class="summary-row"><span>${tr('delivery')}</span><span>$${del.toFixed(2)}</span></div>
+    <div class="summary-row total"><span>${tr('total')}</span><span>$${total.toFixed(2)}</span></div>`;
+  document.getElementById('btcTotal').textContent = `≈ ${(total/BTC_RATE).toFixed(6)} BTC`;
+  document.getElementById('checkoutBtn').disabled = false;
+  document.getElementById('checkoutBtn').textContent = tr(payMethod==='btc'?'checkoutBtc':'checkoutCod');
+  if (payMethod === 'btc') document.getElementById('btcBox').classList.add('show');
+}
+
+function changeQty(id, d) {
+  const i = cart.findIndex(c => c.id === id);
+  if (i < 0) return;
+  cart[i].qty += d;
+  if (cart[i].qty <= 0) cart.splice(i, 1);
+  updateCartBadge(); renderCart();
+}
+
+function selectPay(m) {
+  payMethod = m;
+  document.getElementById('payCoD').classList.toggle('selected', m==='cod');
+  document.getElementById('payBtc').classList.toggle('selected', m==='btc');
+  const box = document.getElementById('btcBox');
+  if(m==='btc' && cart.length) box.classList.add('show'); else box.classList.remove('show');
+  const btn = document.getElementById('checkoutBtn');
+  if (!btn.disabled) btn.textContent = tr(m==='btc'?'checkoutBtc':'checkoutCod');
+}
+
+function copyBTC() { navigator.clipboard.writeText(BTC_ADDR).then(() => showToast(tr('toastCopied'))); }
+
+function placeOrder() {
+  if (!cart.length) return;
+  const sub = cart.reduce((s,c) => s+c.price*c.qty, 0);
+  const total = (sub+1.50).toFixed(2);
+  const btc = ((sub+1.50)/BTC_RATE).toFixed(6);
+  const oid = 'MG-'+Math.random().toString(36).substr(2,6).toUpperCase();
+  const time = new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  const count = cart.reduce((s,c)=>s+c.qty,0);
+  document.getElementById('successIcon').textContent = payMethod==='btc'?'₿':'✅';
+  document.getElementById('successTitle').textContent = tr('successTitle');
+  document.getElementById('successSub').innerHTML = payMethod==='btc' ? tr('successSubBtc', btc) : tr('successSubCod', total);
+  document.getElementById('successDetails').innerHTML = `
+    <div class="so-row"><span>${tr('orderId')}</span><span>${oid}</span></div>
+    <div class="so-row"><span>${tr('orderTime')}</span><span>${time}</span></div>
+    <div class="so-row"><span>${tr('orderItems')}</span><span>${tr('itemsCount',count)}</span></div>
+    <div class="so-row"><span>${tr('orderTotal')}</span><span>$${total}</span></div>
+    <div class="so-row"><span>${tr('orderPayment')}</span><span>${payMethod==='btc'?tr('btcPayLabel'):tr('codPayLabel')}</span></div>`;
+  if (window.Telegram?.WebApp) window.Telegram.WebApp.sendData(JSON.stringify({ orderId:oid, total, payment:payMethod, items: cart.map(c=>({name:c.en.name, qty:c.qty, price:c.price})) }));
+  cart=[]; updateCartBadge(); closeCart();
+  document.getElementById('successScreen').classList.add('show');
+}
+function closeSuccess() { document.getElementById('successScreen').classList.remove('show'); payMethod='cod'; selectPay('cod'); }
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.innerHTML = msg;
+  Object.assign(t.style, { position:'fixed', bottom:'110px', left:'50%', transform:'translateX(-50%)', background:'#2c6e49', color:'#f9fbe7', padding:'10px 20px', borderRadius:'50px', fontSize:'13px', fontWeight:'600', border:'1px solid #cfe0c3', zIndex:'400', whiteSpace:'nowrap', fontFamily: lang==='ar' ? 'Tajawal,sans-serif' : 'DM Sans,sans-serif' });
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2200);
+}
+if (window.Telegram?.WebApp) { const tg = window.Telegram.WebApp; tg.ready(); tg.expand(); tg.setHeaderColor('#2b5e3b'); tg.setBackgroundColor('#eef4e6'); if (tg.initDataUnsafe?.user?.language_code === 'ar') { lang = 'ar'; document.documentElement.setAttribute('lang', 'ar'); document.documentElement.setAttribute('dir', 'rtl'); } }
+applyI18n(); renderTabs(); renderMenu('all'); selectPay('cod');
+</script>
+</body>
+</html>
