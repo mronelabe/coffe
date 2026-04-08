@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Coffe shoop & ☕🌿 | Animated Cart Logo</title>
+<title>Tanger Coffee Shop ☕🌿</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
-  /* Fresh Green Palette — Matcha & Mint */
   :root {
     --bg: #eef4e6;
     --surface: #f9fbf4;
@@ -40,10 +39,6 @@
   html[lang="ar"] input {
     font-family: 'Tajawal', sans-serif;
   }
-  html[lang="ar"] .logo {
-    font-family: 'Tajawal', sans-serif !important;
-    font-weight: 900; letter-spacing: 0 !important;
-  }
 
   .header {
     background: linear-gradient(135deg, #2b5e3b 0%, #1c402a 100%);
@@ -72,7 +67,6 @@
   }
   .lang-btn:active { transform: scale(0.95); }
 
-  /* ========== ANIMATED CART BUTTON WITH LOGO ========== */
   .cart-btn {
     background: rgba(255,255,240,0.2);
     border: 1px solid #c8e0b0;
@@ -91,13 +85,11 @@
   }
   .cart-btn:active { transform: scale(0.95); }
   
-  /* Cart Icon Container - Animated */
   .cart-icon-wrapper {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
   }
   
   .cart-emoji {
@@ -106,13 +98,6 @@
     display: inline-block;
   }
   
-  /* Empty state - normal cart */
-  .cart-btn.empty-state .cart-emoji {
-    animation: none;
-    filter: none;
-  }
-  
-  /* Loaded state - animated cart with bounce and shake effect */
   .cart-btn.loaded-state {
     background: rgba(76, 149, 108, 0.3);
     border-color: var(--accent2);
@@ -129,18 +114,6 @@
     100% { transform: scale(1) rotate(0deg); }
   }
   
-  /* Continuous subtle animation when cart has items */
-  .cart-btn.has-items .cart-emoji {
-    animation: gentleCartSway 1.5s ease-in-out infinite;
-  }
-  
-  @keyframes gentleCartSway {
-    0%, 100% { transform: rotate(0deg) translateY(0); }
-    25% { transform: rotate(-3deg) translateY(-1px); }
-    75% { transform: rotate(3deg) translateY(-1px); }
-  }
-  
-  /* Sparkle effect when item added */
   .cart-sparkle {
     position: absolute;
     top: -8px;
@@ -177,7 +150,7 @@
   
   @keyframes badgePop {
     0% { transform: scale(1); }
-    50% { transform: scale(1.4); background: var(--gold); color: #1f3b2c; }
+    50% { transform: scale(1.4); background: var(--gold); }
     100% { transform: scale(1); }
   }
 
@@ -228,7 +201,6 @@
     transition: transform 0.15s, box-shadow 0.2s;
   }
   .menu-item:active { transform: scale(0.97); }
-  .menu-item:hover { border-color: var(--accent2); box-shadow: var(--shadow-sm); }
   .item-emoji {
     font-size: 48px; text-align: center;
     padding: 18px 0 10px;
@@ -250,9 +222,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.15s;
   }
-  .add-btn:hover { background: var(--accent); transform: scale(1.05); }
   .popular { position: relative; }
   .badge {
     position: absolute; top: 8px; right: 8px;
@@ -277,7 +247,6 @@
     transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1);
     max-height: 88vh;
     overflow-y: auto;
-    box-shadow: 0 -8px 30px rgba(0,0,0,0.1);
   }
   .cart-sheet.open { transform: translateY(0); }
   .sheet-handle {
@@ -302,14 +271,11 @@
     font-size: 18px;
     cursor: pointer;
     color: var(--accent);
-    transition: all 0.2s;
   }
-  .close-sheet:active { transform: scale(0.92); }
 
   .cart-items {
     padding: 8px 16px;
     min-height: 140px;
-    transition: all 0.3s ease;
   }
   
   .empty-cart {
@@ -331,12 +297,6 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
   }
-  .empty-cart p {
-    font-size: 15px;
-    color: #8aae7a;
-    line-height: 1.5;
-    font-weight: 500;
-  }
   
   .cart-item {
     display: flex;
@@ -349,43 +309,10 @@
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--border);
     animation: itemSlideIn 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-    transition: all 0.2s ease;
-  }
-  .cart-item:hover {
-    transform: translateX(4px);
-    border-color: var(--accent2);
-    box-shadow: var(--shadow-md);
   }
   @keyframes itemSlideIn {
-    0% {
-      opacity: 0;
-      transform: translateY(20px) scale(0.96);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-  
-  .cart-item-removing {
-    animation: itemSlideOut 0.25s ease-in forwards !important;
-  }
-  @keyframes itemSlideOut {
-    0% {
-      opacity: 1;
-      transform: translateX(0) scale(1);
-      max-height: 100px;
-      padding: 16px 12px;
-      margin-bottom: 8px;
-    }
-    100% {
-      opacity: 0;
-      transform: translateX(-20px) scale(0.94);
-      max-height: 0;
-      padding: 0 12px;
-      margin-bottom: 0;
-      border-width: 0;
-    }
+    0% { opacity: 0; transform: translateY(20px) scale(0.96); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
   }
   
   .ci-emoji {
@@ -419,23 +346,12 @@
     font-weight: 700;
     cursor: pointer;
     color: var(--accent);
-    transition: all 0.15s;
   }
-  .qty-btn:active { transform: scale(0.9); background: var(--accent2); color: white; }
   .qty-num {
     font-size: 16px;
     font-weight: 800;
     min-width: 28px;
     text-align: center;
-    color: var(--text);
-  }
-  .qty-pulse {
-    animation: qtyPop 0.2s ease-in-out;
-  }
-  @keyframes qtyPop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); color: var(--accent); }
-    100% { transform: scale(1); }
   }
 
   .order-summary {
@@ -443,14 +359,6 @@
     margin: 12px 16px 0;
     border-radius: 24px;
     padding: 18px 20px;
-    transition: all 0.25s ease;
-  }
-  .summary-update {
-    animation: summaryGlow 0.3s ease;
-  }
-  @keyframes summaryGlow {
-    0% { opacity: 0.7; transform: scale(0.98); background: #d6e8c4; }
-    100% { opacity: 1; transform: scale(1); background: linear-gradient(135deg, #eaf3e2, #e0edcf); }
   }
   .summary-row {
     display: flex;
@@ -472,34 +380,34 @@
   .phone-section { padding: 16px 20px 8px; }
   .phone-label { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 8px; display: block; text-transform: uppercase; letter-spacing: 0.8px; }
   .phone-input { width: 100%; padding: 14px 18px; border-radius: 30px; border: 1.5px solid var(--border); background: white; font-size: 15px; outline: none; }
-  .phone-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(44,110,73,0.1); }
+  .phone-input:focus { border-color: var(--accent); }
   .phone-error { font-size: 11px; color: #d9534f; margin-top: 6px; padding-left: 8px; display: none; }
   .phone-error.show { display: block; }
 
   .payment-section { padding: 8px 20px 0; }
   .pay-label { font-size: 12px; color: #608a6b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 700; }
   .pay-methods { display: flex; gap: 12px; }
-  .pay-method { flex: 1; padding: 14px 10px; border-radius: 20px; border: 2px solid #cfdfc1; background: white; cursor: pointer; text-align: center; transition: all 0.2s; }
-  .pay-method.selected { border-color: var(--accent); background: #eef6e6; transform: scale(0.98); }
+  .pay-method { flex: 1; padding: 14px 10px; border-radius: 20px; border: 2px solid #cfdfc1; background: white; cursor: pointer; text-align: center; }
+  .pay-method.selected { border-color: var(--accent); background: #eef6e6; }
 
   .btc-box { margin: 12px 20px; background: #fef9e6; border: 1px solid #fce6b4; border-radius: 20px; padding: 14px; display: none; }
-  .btc-box.show { display: block; animation: fadeIn 0.3s; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  .btc-box.show { display: block; }
   .btc-address { font-size: 11px; background: #fafcf5; padding: 8px 10px; border-radius: 12px; cursor: pointer; direction: ltr; text-align: left; }
 
   .checkout-wrap { padding: 16px 20px 24px; }
-  .checkout-btn { width: 100%; padding: 18px; border-radius: 50px; border: none; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; font-size: 17px; font-weight: 800; cursor: pointer; transition: all 0.2s; }
-  .checkout-btn:active { transform: scale(0.97); }
+  .checkout-btn { width: 100%; padding: 18px; border-radius: 50px; border: none; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; font-size: 17px; font-weight: 800; cursor: pointer; }
   .checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
   .success-screen {
     position: fixed; inset: 0; background: #f1f8ec;
     z-index: 300; display: none;
-    flex-direction: column; align-items: center;
-    justify-content: center; padding: 40px 30px; text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 30px;
+    text-align: center;
   }
-  .success-screen.show { display: flex; animation: fadeInScale 0.3s; }
-  @keyframes fadeInScale { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+  .success-screen.show { display: flex; }
   .success-icon { font-size: 80px; animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1); }
   @keyframes pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
   .success-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--accent); margin-top: 20px; }
@@ -511,7 +419,7 @@
 <body>
 
 <div class="header">
-  <div class="logo" id="logoEl">Tanger<span>&</span>CoffeShope</div>
+  <div class="logo" id="logoEl">Tanger<span>&</span>Coffee</div>
   <div class="header-right">
     <button class="lang-btn" id="langBtn" onclick="toggleLang()">عربي</button>
     <button class="cart-btn empty-state" id="cartBtn" onclick="openCart()">
@@ -525,7 +433,7 @@
 </div>
 
 <div class="hero">
-  <h1 id="heroTitle">Your fresh<br>herb of <em>nature</em></h1>
+  <h1 id="heroTitle">Your fresh<br>cup of <em>nature</em></h1>
   <p id="heroSub">Organic · Pay with Cash or Bitcoin ₿</p>
 </div>
 
@@ -575,12 +483,13 @@
 </div>
 
 <script>
-// Telegram Bot Configuration
+// ============================================================
+// ✅ YOUR TELEGRAM CREDENTIALS (Already Added!)
+// ============================================================
 const TELEGRAM_BOT_TOKEN = "8690558257:AAE36DUv7zpUn2jdbyB3xq4-I2elR4C5TRw";
 const TELEGRAM_CHAT_ID = "1949310240";
-const TELEGRAM_ENABLED = TELEGRAM_BOT_TOKEN !== "8690558257:AAE36DUv7zpUn2jdbyB3xq4-I2elR4C5TRw" && TELEGRAM_CHAT_ID !== "1949310240";
 
-// i18n Data (simplified for space)
+// i18n Data
 const i18n = {
   en: { langBtn:'عربي', cartLabel:'Cart', heroTitle:'Your fresh<br>cup of <em>nature</em>', heroSub:'Organic · Pay with Cash or Bitcoin ₿', menuTitle:'Our Menu 🌱', cartSheetTitle:'Your Order 🍃', phoneLabel:'📞 PHONE NUMBER', payLabel:'Payment Method', codName:'Cash on Delivery', codDesc:'Pay when you receive', btcName:'Bitcoin', btcDesc:'Crypto payment', btcSendLabel:'₿ SEND BITCOIN TO:', btcAmountLabel:'Amount to send:', btcCopyHint:'👆 Tap address to copy', checkoutCod:'Place Order — Cash on Delivery', checkoutBtc:"✓ I've Sent Bitcoin", successTitle:'Order Placed!', successSubBtc:(a)=>`Bitcoin payment of ${a} BTC confirmed.<br>Your order is in the queue!`, successSubCod:(t)=>`Pay $${t} cash when delivered.<br>Estimated: 15–20 min`, orderId:'Order ID', orderTime:'Time', orderItems:'Items', orderTotal:'Total', orderPayment:'Payment', btcPayLabel:'₿ Bitcoin', codPayLabel:'💵 Cash', itemsCount:(n)=>`${n} item(s)`, backToMenu:'Back to Menu', subtotal:'Subtotal', delivery:'Delivery', total:'Total', emptyCart:'Your cart is empty.<br>Add some organic coffee!', toastAdded:(name)=>`${name} added!`, toastCopied:'₿ Address copied!', popular:'★ Popular', phoneErrorMsg:'Valid phone required', tabs:[{key:'all',label:'🌿 All'},{key:'hot',label:'🍀 Hot'},{key:'cold',label:'🍁 Cold'},{key:'food',label:'🥐 Food'},{key:'special',label:'⭐ Special'}] },
   ar: { langBtn:'English', cartLabel:'السلة', heroTitle:'كوبك الطازج<br>من <em>الطبيعة</em>', heroSub:'عضوي · ادفع نقداً أو بالبيتكوين ₿', menuTitle:'قائمة طعامنا 🌱', cartSheetTitle:'طلبك 🍃', phoneLabel:'📞 رقم الهاتف', payLabel:'طريقة الدفع', codName:'الدفع عند الاستلام', codDesc:'ادفع عند وصول الطلب', btcName:'بيتكوين', btcDesc:'دفع بالعملة الرقمية', btcSendLabel:'₿ أرسل البيتكوين إلى:', btcAmountLabel:'المبلغ المطلوب:', btcCopyHint:'👆 اضغط على العنوان للنسخ', checkoutCod:'تأكيد الطلب — الدفع عند الاستلام', checkoutBtc:'✓ لقد أرسلت البيتكوين', successTitle:'تم الطلب!', successSubBtc:(a)=>`تم تأكيد دفع ${a} BTC.<br>طلبك في قائمة الانتظار!`, successSubCod:(t)=>`ادفع $${t} نقداً عند الاستلام.<br>الوقت المتوقع: ١٥–٢٠ دقيقة`, orderId:'رقم الطلب', orderTime:'الوقت', orderItems:'العناصر', orderTotal:'الإجمالي', orderPayment:'طريقة الدفع', btcPayLabel:'₿ بيتكوين', codPayLabel:'💵 نقداً', itemsCount:(n)=>`${n} عنصر`, backToMenu:'العودة للقائمة', subtotal:'المجموع الفرعي', delivery:'التوصيل', total:'الإجمالي', emptyCart:'سلتك فارغة.<br>أضف قهوتك العضوية!', toastAdded:(name)=>`تمت إضافة ${name}!`, toastCopied:'₿ تم نسخ العنوان!', popular:'★ الأكثر طلباً', phoneErrorMsg:'رقم هاتف صالح مطلوب', tabs:[{key:'all',label:'☕ الكل'},{key:'hot',label:'🔥 ساخن'},{key:'cold',label:'🧊 بارد'},{key:'food',label:'🥐 طعام'},{key:'special',label:'⭐ مميز'}] }
@@ -606,10 +515,23 @@ let cart = [], payMethod = 'cod', currentCat = 'all', lang = 'en';
 const L = () => i18n[lang];
 const tr = (key, ...a) => { const v = L()[key]; return typeof v === 'function' ? v(...a) : v; };
 
+// Telegram Mini App Initialization
+if(window.Telegram?.WebApp) { 
+  const tg = window.Telegram.WebApp; 
+  tg.ready(); 
+  tg.expand(); 
+  tg.setHeaderColor('#2b5e3b'); 
+  tg.setBackgroundColor('#eef4e6'); 
+  if(tg.initDataUnsafe?.user?.language_code === 'ar') { 
+    lang='ar'; 
+    document.documentElement.setAttribute('lang','ar'); 
+    document.documentElement.setAttribute('dir','rtl'); 
+  } 
+}
+
 function updateCartButtonAnimation() {
   const cartBtn = document.getElementById('cartBtn');
   const hasItems = cart.length > 0;
-  
   if (hasItems) {
     cartBtn.classList.remove('empty-state');
     cartBtn.classList.add('loaded-state', 'has-items');
@@ -622,13 +544,9 @@ function updateCartButtonAnimation() {
 function animateCartLogo() {
   const cartEmoji = document.getElementById('cartEmoji');
   cartEmoji.style.animation = 'none';
-  cartEmoji.offsetHeight; // force reflow
+  cartEmoji.offsetHeight;
   cartEmoji.style.animation = 'cartBouncePop 0.4s cubic-bezier(0.34, 1.2, 0.64, 1)';
-  setTimeout(() => {
-    cartEmoji.style.animation = '';
-  }, 400);
-  
-  // Add sparkle effect
+  setTimeout(() => { cartEmoji.style.animation = ''; }, 400);
   const wrapper = document.querySelector('.cart-icon-wrapper');
   const sparkle = document.createElement('span');
   sparkle.className = 'cart-sparkle';
@@ -707,11 +625,67 @@ async function changeQty(id, d) {
 function selectPay(m) { payMethod = m; document.getElementById('payCoD').classList.toggle('selected', m==='cod'); document.getElementById('payBtc').classList.toggle('selected', m==='btc'); const box = document.getElementById('btcBox'); if(m==='btc' && cart.length) box.classList.add('show'); else box.classList.remove('show'); const btn = document.getElementById('checkoutBtn'); if(!btn.disabled) btn.textContent = tr(m==='btc'?'checkoutBtc':'checkoutCod'); }
 function copyBTC() { navigator.clipboard.writeText('bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh').then(() => showToast(tr('toastCopied'))); }
 function validatePhone() { const phone = document.getElementById('phoneInput').value.trim(); const regex = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{4,12}$/; if(!phone || !regex.test(phone)) { document.getElementById('phoneError').classList.add('show'); return null; } document.getElementById('phoneError').classList.remove('show'); return phone; }
-async function sendOrderToTelegram(orderDetails) { if(!TELEGRAM_ENABLED) return; const message = `🟢 NEW ORDER\nID: ${orderDetails.orderId}\nPhone: ${orderDetails.phone}\nItems:\n${orderDetails.itemsList}\nTotal: $${orderDetails.total}\nPayment: ${orderDetails.paymentMethod}`; try { await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ chat_id:TELEGRAM_CHAT_ID, text:message }) }); } catch(e) { console.error(e); } }
-async function validateAndPlaceOrder() { if(!cart.length) return; const phone = validatePhone(); if(!phone) return; const sub = cart.reduce((s,c)=>s+c.price*c.qty,0); const total = (sub+1.50).toFixed(2); const btc = ((sub+1.50)/BTC_RATE).toFixed(6); const oid = 'MG-'+Math.random().toString(36).substr(2,6).toUpperCase(); const itemsList = cart.map(c=>`  • ${c[lang].name} x${c.qty} = $${(c.price*c.qty).toFixed(2)}`).join('\n'); await sendOrderToTelegram({ orderId:oid, phone, itemsList, total, paymentMethod: payMethod==='btc'?'Bitcoin':'Cash' }); document.getElementById('successIcon').textContent = payMethod==='btc'?'₿':'✅'; document.getElementById('successTitle').textContent = tr('successTitle'); document.getElementById('successSub').innerHTML = payMethod==='btc' ? tr('successSubBtc', btc) : tr('successSubCod', total); document.getElementById('successDetails').innerHTML = `<div class="so-row"><span>${tr('orderId')}</span><span>${oid}</span></div><div class="so-row"><span>📞 Phone</span><span>${phone}</span></div><div class="so-row"><span>${tr('orderTime')}</span><span>${new Date().toLocaleTimeString()}</span></div><div class="so-row"><span>${tr('orderItems')}</span><span>${cart.reduce((s,c)=>s+c.qty,0)} items</span></div><div class="so-row"><span>${tr('orderTotal')}</span><span>$${total}</span></div><div class="so-row"><span>${tr('orderPayment')}</span><span>${payMethod==='btc'?tr('btcPayLabel'):tr('codPayLabel')}</span></div>`; cart = []; updateCartBadge(); updateCartButtonAnimation(); closeCart(); document.getElementById('successScreen').classList.add('show'); }
+
+// ✅ FIXED: This will ALWAYS send Telegram notifications
+async function sendOrderToTelegram(orderDetails) {
+  const message = `🟢 NEW ORDER FROM TANGER COFFEE 🟢\n\n` +
+    `📦 Order ID: ${orderDetails.orderId}\n` +
+    `📞 Customer Phone: ${orderDetails.phone}\n` +
+    `⏰ Time: ${orderDetails.time}\n` +
+    `🛒 Items:\n${orderDetails.itemsList}\n` +
+    `💰 Total: $${orderDetails.total}\n` +
+    `💳 Payment: ${orderDetails.paymentMethod}`;
+  
+  try { 
+    const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, { 
+      method: 'POST', 
+      headers: { 'Content-Type': 'application/json' }, 
+      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: message }) 
+    });
+    const result = await response.json();
+    if(result.ok) {
+      console.log("✅ Telegram notification sent!");
+    } else {
+      console.log("❌ Telegram error:", result.description);
+    }
+  } catch(e) { 
+    console.error("Failed to send:", e); 
+  } 
+}
+
+async function validateAndPlaceOrder() { 
+  if(!cart.length) { showToast("Cart is empty"); return; } 
+  const phone = validatePhone(); 
+  if(!phone) return; 
+  const sub = cart.reduce((s,c)=>s+c.price*c.qty,0); 
+  const total = (sub+1.50).toFixed(2); 
+  const btc = ((sub+1.50)/BTC_RATE).toFixed(6); 
+  const oid = 'MG-'+Math.random().toString(36).substr(2,6).toUpperCase(); 
+  const time = new Date().toLocaleString();
+  const itemsList = cart.map(c=>`  • ${c[lang].name} x${c.qty} = $${(c.price*c.qty).toFixed(2)}`).join('\n'); 
+  
+  // Send to Telegram
+  await sendOrderToTelegram({ orderId:oid, phone, time, itemsList, total, paymentMethod: payMethod==='btc'?'Bitcoin (₿)':'Cash on Delivery (💵)' }); 
+  
+  document.getElementById('successIcon').textContent = payMethod==='btc'?'₿':'✅'; 
+  document.getElementById('successTitle').textContent = tr('successTitle'); 
+  document.getElementById('successSub').innerHTML = payMethod==='btc' ? tr('successSubBtc', btc) : tr('successSubCod', total); 
+  document.getElementById('successDetails').innerHTML = `<div class="so-row"><span>${tr('orderId')}</span><span>${oid}</span></div><div class="so-row"><span>📞 Phone</span><span>${phone}</span></div><div class="so-row"><span>${tr('orderTime')}</span><span>${new Date().toLocaleTimeString()}</span></div><div class="so-row"><span>${tr('orderItems')}</span><span>${cart.reduce((s,c)=>s+c.qty,0)} items</span></div><div class="so-row"><span>${tr('orderTotal')}</span><span>$${total}</span></div><div class="so-row"><span>${tr('orderPayment')}</span><span>${payMethod==='btc'?tr('btcPayLabel'):tr('codPayLabel')}</span></div>`; 
+  
+  if(window.Telegram?.WebApp) {
+    window.Telegram.WebApp.sendData(JSON.stringify({ orderId:oid, phone, total, payment:payMethod }));
+  }
+  
+  cart = []; 
+  updateCartBadge(); 
+  updateCartButtonAnimation(); 
+  closeCart(); 
+  document.getElementById('successScreen').classList.add('show'); 
+}
+
 function closeSuccess() { document.getElementById('successScreen').classList.remove('show'); payMethod='cod'; selectPay('cod'); document.getElementById('phoneInput').value = ''; }
 function showToast(msg) { const t = document.createElement('div'); t.innerHTML = msg; Object.assign(t.style, { position:'fixed', bottom:'110px', left:'50%', transform:'translateX(-50%)', background:'#2c6e49', color:'#f9fbe7', padding:'10px 20px', borderRadius:'50px', fontSize:'13px', fontWeight:'600', border:'1px solid #cfe0c3', zIndex:'400', whiteSpace:'nowrap' }); document.body.appendChild(t); setTimeout(() => t.remove(), 2200); }
-if(window.Telegram?.WebApp) { const tg = window.Telegram.WebApp; tg.ready(); tg.expand(); tg.setHeaderColor('#2b5e3b'); tg.setBackgroundColor('#eef4e6'); if(tg.initDataUnsafe?.user?.language_code === 'ar') { lang='ar'; document.documentElement.setAttribute('lang','ar'); document.documentElement.setAttribute('dir','rtl'); } }
+
 applyI18n(); renderTabs(); renderMenu('all'); selectPay('cod'); updateCartButtonAnimation();
 </script>
 </body>
