@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Brew & Bean ☕</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0b07;
+    --surface: #1a1410;
+    --card: #231c14;
+    --border: #3a2e22;
+    --accent: #d4914a;
+    --accent2: #f0c070;
+    --gold: #e8b84b;
+    --text: #f5ead8;
+    --muted: #8a7660;
+    --btc: #f7931a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-bottom: 100px;
+  }
+
+  html[lang="ar"] body,
+  html[lang="ar"] button,
+  html[lang="ar"] input {
+    font-family: 'Tajawal', sans-serif;
+  }
+  html[lang="ar"] .logo {
+    font-family: 'Tajawal', sans-serif !important;
+    font-weight: 900; letter-spacing: 0 !important;
+  }
+  html[lang="ar"] .sheet-title,
+  html[lang="ar"] .section-title,
+  html[lang="ar"] .success-title {
+    font-family: 'Tajawal', sans-serif !important;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(160deg, #1e1409 0%, #0e0b07 100%);
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 900;
+    color: var(--accent2); letter-spacing: 0.5px;
+  }
+  .logo span { color: var(--accent); }
+  .header-right { display: flex; align-items: center; gap: 8px; }
+
+  .lang-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 7px 12px;
+    font-size: 12px; font-weight: 700;
+    color: var(--accent2);
+    cursor: pointer; transition: all 0.2s;
+  }
+  html[lang="ar"] .lang-btn { font-family: 'Tajawal', sans-serif; font-size: 13px; }
+  .lang-btn:active { transform: scale(0.95); }
+
+  .cart-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 8px 14px;
+    font-size: 13px; color: var(--text);
+    cursor: pointer; display: flex; align-items: center; gap: 6px;
+    transition: all 0.2s;
+  }
+  .cart-btn:active { transform: scale(0.95); }
+  .cart-badge {
+    background: var(--accent);
+    color: #fff; border-radius: 50%;
+    width: 18px; height: 18px;
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 28px 20px 20px;
+    background: radial-gradient(ellipse at top, #2a1c0a 0%, #0e0b07 70%);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; line-height: 1.2;
+    font-weight: 900; color: var(--text);
+  }
+  html[lang="ar"] .hero h1 {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 30px; line-height: 1.4;
+  }
+  .hero h1 em { color: var(--accent); font-style: normal; }
+  .hero p { margin-top: 8px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+  /* ── Tabs ── */
+  .tabs {
+    display: flex; gap: 8px;
+    padding: 16px 20px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  html[dir="rtl"] .tabs { flex-direction: row-reverse; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    padding: 7px 16px; border-radius: 50px;
+    background: var(--card); border: 1px solid var(--border);
+    font-size: 13px; white-space: nowrap;
+    cursor: pointer; color: var(--muted);
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  html[lang="ar"] .tab { font-size: 14px; }
+  .tab.active {
+    background: var(--accent); border-color: var(--accent);
+    color: #fff; font-weight: 600;
+  }
+
+  /* ── Menu ── */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    padding: 0 20px 12px; color: var(--accent2);
+  }
+  .menu-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; padding: 0 20px 24px;
+  }
+  .menu-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    cursor: pointer; transition: transform 0.15s, border-color 0.15s;
+  }
+  .menu-item:active { transform: scale(0.97); }
+  .menu-item:hover { border-color: var(--accent); }
+  .item-emoji {
+    font-size: 48px; text-align: center;
+    padding: 18px 0 10px;
+    background: linear-gradient(180deg, #2a1c0a 0%, var(--card) 100%);
+    line-height: 1;
+  }
+  .item-info { padding: 10px 12px 12px; }
+  .item-name { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  html[lang="ar"] .item-name { font-size: 13px; }
+  .item-desc { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+  html[lang="ar"] .item-desc { font-size: 12px; }
+  .item-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 10px;
+  }
+  .item-price { font-size: 15px; font-weight: 700; color: var(--accent2); }
+  .add-btn {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); border: none; color: #fff;
+    font-size: 18px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s; flex-shrink: 0;
+  }
+  .add-btn:hover { background: var(--accent2); }
+
+  .popular { position: relative; }
+  .badge {
+    position: absolute; top: 8px; right: 8px;
+    background: var(--gold); color: #000;
+    font-size: 9px; font-weight: 700;
+    padding: 2px 7px; border-radius: 50px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  html[dir="rtl"] .badge { right: auto; left: 8px; }
+  html[lang="ar"] .badge { font-size: 10px; letter-spacing: 0; text-transform: none; }
+
+  /* ── Cart overlay ── */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+    z-index: 200; display: none; backdrop-filter: blur(4px);
+  }
+  .overlay.open { display: block; }
+
+  .cart-sheet {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--surface); border-top: 1px solid var(--border);
+    border-radius: 24px 24px 0 0; z-index: 201;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+    max-height: 85vh; overflow-y: auto;
+  }
+  .cart-sheet.open { transform: translateY(0); }
+  .sheet-handle {
+    width: 40px; height: 4px; background: var(--border);
+    border-radius: 2px; margin: 14px auto 4px;
+  }
+  .sheet-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    padding: 10px 20px 16px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .close-sheet {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 50%; width: 30px; height: 30px;
+    font-size: 16px; cursor: pointer; color: var(--muted);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .cart-items { padding: 12px 20px; }
+  .cart-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+  }
+  .cart-item:last-child { border-bottom: none; }
+  .ci-emoji { font-size: 28px; flex-shrink: 0; }
+  .ci-info { flex: 1; }
+  .ci-name { font-size: 14px; font-weight: 600; }
+  .ci-price { font-size: 12px; color: var(--accent2); margin-top: 2px; }
+  .ci-qty { display: flex; align-items: center; gap: 8px; }
+  .qty-btn {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--card); color: var(--text);
+    font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .qty-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .qty-num { font-size: 14px; font-weight: 700; min-width: 20px; text-align: center; }
+
+  .order-summary {
+    background: var(--card); margin: 8px 20px 0;
+    border-radius: 16px; padding: 14px 16px; border: 1px solid var(--border);
+  }
+  .summary-row {
+    display: flex; justify-content: space-between;
+    font-size: 13px; padding: 4px 0; color: var(--muted);
+  }
+  .summary-row.total {
+    font-size: 16px; font-weight: 700; color: var(--text);
+    border-top: 1px solid var(--border); margin-top: 8px; padding-top: 10px;
+  }
+
+  .payment-section { padding: 16px 20px; }
+  .pay-label {
+    font-size: 12px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
+  }
+  html[lang="ar"] .pay-label { text-transform: none; letter-spacing: 0; font-size: 13px; }
+  .pay-methods { display: flex; gap: 10px; }
+  .pay-method {
+    flex: 1; padding: 14px 10px; border-radius: 14px;
+    border: 2px solid var(--border); background: var(--card);
+    cursor: pointer; text-align: center; transition: all 0.2s;
+  }
+  .pay-method.selected { border-color: var(--accent); background: rgba(212,145,74,0.1); }
+  .pay-method.btc.selected { border-color: var(--btc); background: rgba(247,147,26,0.1); }
+  .pay-icon { font-size: 22px; margin-bottom: 4px; }
+  .pay-name { font-size: 12px; font-weight: 600; color: var(--text); }
+  .pay-desc { font-size: 10px; color: var(--muted); margin-top: 2px; }
+  html[lang="ar"] .pay-name { font-size: 13px; }
+  html[lang="ar"] .pay-desc { font-size: 11px; }
+
+  .btc-box {
+    margin: 0 20px; background: rgba(247,147,26,0.07);
+    border: 1px solid rgba(247,147,26,0.3);
+    border-radius: 14px; padding: 14px; display: none;
+  }
+  .btc-box.show { display: block; }
+  .btc-title { font-size: 12px; color: var(--btc); font-weight: 600; margin-bottom: 6px; }
+  html[lang="ar"] .btc-title { font-size: 13px; }
+  .btc-address {
+    font-size: 11px; color: var(--muted); word-break: break-all; line-height: 1.5;
+    background: var(--card); padding: 8px 10px; border-radius: 8px;
+    cursor: pointer; border: 1px solid var(--border); transition: border-color 0.2s;
+    direction: ltr; text-align: left;
+  }
+  .btc-address:hover { border-color: var(--btc); }
+  .btc-amount { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+  .btc-amount span:first-child { font-size: 12px; color: var(--muted); }
+  .btc-amount span:last-child { font-size: 14px; font-weight: 700; color: var(--btc); direction: ltr; }
+  .copy-hint { font-size: 10px; color: var(--muted); margin-top: 6px; text-align: right; }
+  html[dir="rtl"] .copy-hint { text-align: left; }
+
+  .checkout-wrap { padding: 16px 20px 20px; }
+  .checkout-btn {
+    width: 100%; padding: 16px; border-radius: 16px; border: none;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff; font-size: 16px; font-weight: 700;
+    cursor: pointer; letter-spacing: 0.3px;
+    transition: opacity 0.2s, transform 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  html[lang="ar"] .checkout-btn { font-family: 'Tajawal', sans-serif; font-size: 17px; letter-spacing: 0; }
+  .checkout-btn:active { transform: scale(0.98); opacity: 0.9; }
+  .checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ── Success ── */
+  .success-screen {
+    position: fixed; inset: 0; background: var(--bg);
+    z-index: 300; display: none;
+    flex-direction: column; align-items: center;
+    justify-content: center; padding: 40px 30px; text-align: center;
+  }
+  .success-screen.show { display: flex; }
+  .success-icon { font-size: 80px; animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+  @keyframes pop {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 900;
+    color: var(--accent2); margin-top: 20px;
+  }
+  .success-sub { font-size: 15px; color: var(--muted); margin-top: 10px; line-height: 1.6; }
+  .success-order {
+    margin-top: 24px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 16px;
+    padding: 16px 20px; width: 100%; text-align: left;
+  }
+  html[dir="rtl"] .success-order { text-align: right; }
+  .so-row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; }
+  .so-row span:first-child { color: var(--muted); }
+  .so-row span:last-child { font-weight: 600; }
+  .close-success {
+    margin-top: 28px; padding: 14px 40px; border-radius: 50px;
+    border: 1px solid var(--border); background: var(--card);
+    color: var(--text); font-size: 15px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: border-color 0.2s;
+  }
+  html[lang="ar"] .close-success { font-family: 'Tajawal', sans-serif; font-size: 16px; }
+  .close-success:hover { border-color: var(--accent); }
+
+  .empty-cart { text-align: center; padding: 40px 20px; }
+  .empty-cart .e-icon { font-size: 50px; margin-bottom: 12px; }
+  .empty-cart p { color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo" id="logoEl">Brew<span>&</span>Bean</div>
+  <div class="header-right">
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">عربي</button>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 <span id="cartLabel">Cart</span>
+      <span class="cart-badge" id="cartCount">0</span>
+    </button>
+  </div>
+</div>
+
+<div class="hero">
+  <h1 id="heroTitle">Your perfect<br>cup of <em>coffee</em></h1>
+  <p id="heroSub">Order ahead · Pay with cash or Bitcoin ₿</p>
+</div>
+
+<div class="tabs" id="tabsEl"></div>
+
+<div class="section-title" id="menuTitle">Our Menu</div>
+<div class="menu-grid" id="menuGrid"></div>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+<div class="cart-sheet" id="cartSheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">
+    <span id="cartSheetTitle">Your Order 🛒</span>
+    <button class="close-sheet" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItemsEl"></div>
+  <div class="order-summary" id="orderSummary"></div>
+  <div class="payment-section">
+    <div class="pay-label" id="payLabel">Payment Method</div>
+    <div class="pay-methods">
+      <div class="pay-method selected" id="payCoD" onclick="selectPay('cod')">
+        <div class="pay-icon">💵</div>
+        <div class="pay-name" id="codName">Cash on Delivery</div>
+        <div class="pay-desc" id="codDesc">Pay when you receive</div>
+      </div>
+      <div class="pay-method btc" id="payBtc" onclick="selectPay('btc')">
+        <div class="pay-icon">₿</div>
+        <div class="pay-name" id="btcName">Bitcoin</div>
+        <div class="pay-desc" id="btcDesc">Crypto payment</div>
+      </div>
+    </div>
+  </div>
+  <div class="btc-box" id="btcBox">
+    <div class="btc-title" id="btcSendLabel">₿ SEND BITCOIN TO:</div>
+    <div class="btc-address" id="btcAddr" onclick="copyBTC()">
+      bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
+    </div>
+    <div class="btc-amount">
+      <span id="btcAmountLabel">Amount to send:</span>
+      <span id="btcTotal">≈ 0.00000 BTC</span>
+    </div>
+    <div class="copy-hint" id="btcCopyHint">👆 Tap address to copy</div>
+  </div>
+  <div class="checkout-wrap">
+    <button class="checkout-btn" id="checkoutBtn" onclick="placeOrder()" disabled>Place Order</button>
+  </div>
+</div>
+
+<div class="success-screen" id="successScreen">
+  <div class="success-icon" id="successIcon">☕</div>
+  <div class="success-title" id="successTitle">Order Placed!</div>
+  <div class="success-sub" id="successSub"></div>
+  <div class="success-order" id="successDetails"></div>
+  <button class="close-success" onclick="closeSuccess()" id="backToMenuBtn">Back to Menu</button>
+</div>
+
+<script>
+// ── i18n ──────────────────────────────────────────────────────────────────────
+const i18n = {
+  en: {
+    langBtn: 'عربي', cartLabel: 'Cart',
+    heroTitle: 'Your perfect<br>cup of <em>coffee</em>',
+    heroSub: 'Order ahead · Pay with cash or Bitcoin ₿',
+    menuTitle: 'Our Menu', cartSheetTitle: 'Your Order 🛒',
+    payLabel: 'Payment Method', codName: 'Cash on Delivery',
+    codDesc: 'Pay when you receive', btcName: 'Bitcoin', btcDesc: 'Crypto payment',
+    btcSendLabel: '₿ SEND BITCOIN TO:', btcAmountLabel: 'Amount to send:',
+    btcCopyHint: '👆 Tap address to copy',
+    checkoutCod: 'Place Order — Cash on Delivery',
+    checkoutBtc: "✓ I've Sent Bitcoin",
+    successTitle: 'Order Placed!',
+    successSubBtc: (a) => `Bitcoin payment of ${a} BTC confirmed.<br>Your order is in the queue!`,
+    successSubCod: (t) => `Pay $${t} cash when delivered.<br>Estimated: 15–20 minutes.`,
+    orderId: 'Order ID', orderTime: 'Time', orderItems: 'Items',
+    orderTotal: 'Total', orderPayment: 'Payment',
+    btcPayLabel: '₿ Bitcoin', codPayLabel: '💵 Cash',
+    itemsCount: (n) => `${n} item(s)`, backToMenu: 'Back to Menu',
+    subtotal: 'Subtotal', delivery: 'Delivery', total: 'Total',
+    emptyCart: 'Your cart is empty.<br>Add some coffee!',
+    toastAdded: (name) => `${name} added to cart!`,
+    toastCopied: '₿ Address copied!', popular: '★ Popular',
+    tabs: [
+      { key:'all', label:'☕ All' }, { key:'hot', label:'🔥 Hot' },
+      { key:'cold', label:'🧊 Cold' }, { key:'food', label:'🥐 Food' },
+      { key:'special', label:'⭐ Special' },
+    ],
+  },
+  ar: {
+    langBtn: 'English', cartLabel: 'السلة',
+    heroTitle: 'فنجانك المثالي<br>من <em>القهوة</em>',
+    heroSub: 'اطلب مسبقاً · ادفع نقداً أو بالبيتكوين ₿',
+    menuTitle: 'قائمة المشروبات', cartSheetTitle: 'طلبك 🛒',
+    payLabel: 'طريقة الدفع', codName: 'الدفع عند الاستلام',
+    codDesc: 'ادفع عند وصول الطلب', btcName: 'بيتكوين', btcDesc: 'دفع بالعملة الرقمية',
+    btcSendLabel: '₿ أرسل البيتكوين إلى:', btcAmountLabel: 'المبلغ المطلوب:',
+    btcCopyHint: '👆 اضغط على العنوان للنسخ',
+    checkoutCod: 'تأكيد الطلب — الدفع عند الاستلام',
+    checkoutBtc: '✓ لقد أرسلت البيتكوين',
+    successTitle: 'تم الطلب!',
+    successSubBtc: (a) => `تم تأكيد دفع ${a} BTC.<br>طلبك في قائمة الانتظار!`,
+    successSubCod: (t) => `ادفع $${t} نقداً عند الاستلام.<br>الوقت المتوقع: ١٥–٢٠ دقيقة.`,
+    orderId: 'رقم الطلب', orderTime: 'الوقت', orderItems: 'العناصر',
+    orderTotal: 'الإجمالي', orderPayment: 'طريقة الدفع',
+    btcPayLabel: '₿ بيتكوين', codPayLabel: '💵 نقداً',
+    itemsCount: (n) => `${n} عنصر`, backToMenu: 'العودة للقائمة',
+    subtotal: 'المجموع الفرعي', delivery: 'التوصيل', total: 'الإجمالي',
+    emptyCart: 'سلتك فارغة.<br>أضف قهوتك المفضلة!',
+    toastAdded: (name) => `تمت إضافة ${name} للسلة!`,
+    toastCopied: '₿ تم نسخ العنوان!', popular: '★ الأكثر طلباً',
+    tabs: [
+      { key:'all', label:'☕ الكل' }, { key:'hot', label:'🔥 ساخن' },
+      { key:'cold', label:'🧊 بارد' }, { key:'food', label:'🥐 طعام' },
+      { key:'special', label:'⭐ مميز' },
+    ],
+  }
+};
+
+// ── Menu data (bilingual) ─────────────────────────────────────────────────────
+const menu = [
+  { id:1,  emoji:'☕', price:2.50, cat:'hot',     popular:true,
+    en:{name:'Espresso',      desc:'Pure & intense shot'},
+    ar:{name:'إسبريسو',       desc:'جرعة قوية ومركزة'} },
+  { id:2,  emoji:'🍵', price:3.80, cat:'hot',
+    en:{name:'Cappuccino',    desc:'Creamy milk foam'},
+    ar:{name:'كابتشينو',      desc:'رغوة حليب كريمية'} },
+  { id:3,  emoji:'☕', price:4.00, cat:'hot',     popular:true,
+    en:{name:'Flat White',    desc:'Silky & smooth'},
+    ar:{name:'فلات وايت',     desc:'ناعم وسلس'} },
+  { id:4,  emoji:'🧇', price:4.50, cat:'hot',
+    en:{name:'Caramel Latte', desc:'Sweet caramel twist'},
+    ar:{name:'لاتيه كراميل',  desc:'لمسة كراميل حلوة'} },
+  { id:5,  emoji:'🧊', price:4.20, cat:'cold',    popular:true,
+    en:{name:'Iced Latte',    desc:'Chilled & refreshing'},
+    ar:{name:'آيس لاتيه',     desc:'منعش ومبرد'} },
+  { id:6,  emoji:'🥤', price:4.80, cat:'cold',
+    en:{name:'Cold Brew',     desc:'12-hour slow brew'},
+    ar:{name:'كولد برو',      desc:'تخمير بطيء ١٢ ساعة'} },
+  { id:7,  emoji:'🥛', price:5.50, cat:'cold',
+    en:{name:'Frappuccino',   desc:'Blended ice & cream'},
+    ar:{name:'فرابتشينو',     desc:'ثلج وكريمة مخفوقة'} },
+  { id:8,  emoji:'🥐', price:3.00, cat:'food',    popular:true,
+    en:{name:'Croissant',     desc:'Butter & flaky'},
+    ar:{name:'كرواسون',       desc:'زبدة ومقرمش'} },
+  { id:9,  emoji:'🍰', price:4.50, cat:'food',
+    en:{name:'Cheesecake',    desc:'NY style slice'},
+    ar:{name:'تشيز كيك',      desc:'قطعة على الطراز النيويوركي'} },
+  { id:10, emoji:'🥑', price:7.00, cat:'food',
+    en:{name:'Avocado Toast', desc:'Sourdough base'},
+    ar:{name:'توست أفوكادو',  desc:'خبز العجين المخمر'} },
+  { id:11, emoji:'₿',  price:6.00, cat:'special', popular:true,
+    en:{name:'BTC Blend',     desc:'Our crypto special'},
+    ar:{name:'مزيج البيتكوين',desc:'خليطنا الرقمي المميز'} },
+  { id:12, emoji:'⚡', price:5.80, cat:'special',
+    en:{name:"Miner's Mocha", desc:'Dark & powerful'},
+    ar:{name:'موكا المعدن',   desc:'داكن وقوي'} },
+];
+
+// ── State ─────────────────────────────────────────────────────────────────────
+const BTC_RATE = 68000;
+const BTC_ADDR = 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh';
+let cart = [], payMethod = 'cod', currentCat = 'all', lang = 'en';
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+const L = () => i18n[lang];
+const tr = (key, ...a) => { const v = L()[key]; return typeof v === 'function' ? v(...a) : v; };
+
+// ── Language toggle ───────────────────────────────────────────────────────────
+function toggleLang() {
+  lang = lang === 'en' ? 'ar' : 'en';
+  const html = document.documentElement;
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  applyI18n();
+  renderTabs();
+  renderMenu(currentCat);
+  if (document.getElementById('cartSheet').classList.contains('open')) renderCart();
+}
+
+function applyI18n() {
+  const ids = [
+    'langBtn','cartLabel','heroTitle','heroSub','menuTitle','cartSheetTitle',
+    'payLabel','codName','codDesc','btcName','btcDesc','btcSendLabel',
+    'btcAmountLabel','btcCopyHint','backToMenuBtn'
+  ];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const val = L()[id] ?? L()[id.replace('El','')];
+    if (val !== undefined) el.innerHTML = val;
+  });
+  // checkout btn
+  const btn = document.getElementById('checkoutBtn');
+  if (!btn.disabled) btn.textContent = tr(payMethod === 'btc' ? 'checkoutBtc' : 'checkoutCod');
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────────────────
+function renderTabs() {
+  document.getElementById('tabsEl').innerHTML = L().tabs.map(tab => `
+    <div class="tab${currentCat === tab.key ? ' active' : ''}"
+         onclick="filterCat('${tab.key}', this)">${tab.label}</div>
+  `).join('');
+}
+
+// ── Menu ──────────────────────────────────────────────────────────────────────
+function renderMenu(cat) {
+  const items = cat === 'all' ? menu : menu.filter(m => m.cat === cat);
+  document.getElementById('menuGrid').innerHTML = items.map(item => {
+    const loc = item[lang];
+    return `
+      <div class="menu-item${item.popular ? ' popular' : ''}" onclick="addToCart(${item.id})">
+        ${item.popular ? `<span class="badge">${tr('popular')}</span>` : ''}
+        <div class="item-emoji">${item.emoji}</div>
+        <div class="item-info">
+          <div class="item-name">${loc.name}</div>
+          <div class="item-desc">${loc.desc}</div>
+          <div class="item-footer">
+            <div class="item-price">$${item.price.toFixed(2)}</div>
+            <button class="add-btn" onclick="event.stopPropagation();addToCart(${item.id})">+</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function filterCat(cat, el) {
+  currentCat = cat;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderMenu(cat);
+}
+
+// ── Cart ──────────────────────────────────────────────────────────────────────
+function addToCart(id) {
+  const item = menu.find(m => m.id === id);
+  const ex = cart.find(c => c.id === id);
+  ex ? ex.qty++ : cart.push({...item, qty:1});
+  updateCartBadge();
+  showToast(`${item.emoji} ${tr('toastAdded', item[lang].name)}`);
+}
+
+function updateCartBadge() {
+  document.getElementById('cartCount').textContent = cart.reduce((s,c) => s+c.qty, 0);
+}
+
+function openCart() {
+  renderCart();
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('cartSheet').classList.add('open');
+}
+
+function closeCart() {
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('cartSheet').classList.remove('open');
+}
+
+function renderCart() {
+  const el = document.getElementById('cartItemsEl');
+  if (cart.length === 0) {
+    el.innerHTML = `<div class="empty-cart"><div class="e-icon">☕</div><p>${tr('emptyCart')}</p></div>`;
+    document.getElementById('orderSummary').innerHTML = '';
+    document.getElementById('checkoutBtn').disabled = true;
+    document.getElementById('btcBox').classList.remove('show');
+    return;
+  }
+  el.innerHTML = cart.map(c => `
+    <div class="cart-item">
+      <div class="ci-emoji">${c.emoji}</div>
+      <div class="ci-info">
+        <div class="ci-name">${c[lang].name}</div>
+        <div class="ci-price">$${(c.price * c.qty).toFixed(2)}</div>
+      </div>
+      <div class="ci-qty">
+        <button class="qty-btn" onclick="changeQty(${c.id},-1)">−</button>
+        <span class="qty-num">${c.qty}</span>
+        <button class="qty-btn" onclick="changeQty(${c.id},1)">+</button>
+      </div>
+    </div>`).join('');
+  const sub = cart.reduce((s,c) => s+c.price*c.qty, 0);
+  const del = 1.50, total = sub + del;
+  document.getElementById('orderSummary').innerHTML = `
+    <div class="summary-row"><span>${tr('subtotal')}</span><span>$${sub.toFixed(2)}</span></div>
+    <div class="summary-row"><span>${tr('delivery')}</span><span>$${del.toFixed(2)}</span></div>
+    <div class="summary-row total"><span>${tr('total')}</span><span>$${total.toFixed(2)}</span></div>`;
+  document.getElementById('btcTotal').textContent = `≈ ${(total/BTC_RATE).toFixed(6)} BTC`;
+  document.getElementById('checkoutBtn').disabled = false;
+  document.getElementById('checkoutBtn').textContent = tr(payMethod==='btc'?'checkoutBtc':'checkoutCod');
+  if (payMethod === 'btc') document.getElementById('btcBox').classList.add('show');
+}
+
+function changeQty(id, d) {
+  const i = cart.findIndex(c => c.id === id);
+  if (i < 0) return;
+  cart[i].qty += d;
+  if (cart[i].qty <= 0) cart.splice(i, 1);
+  updateCartBadge(); renderCart();
+}
+
+// ── Payment ───────────────────────────────────────────────────────────────────
+function selectPay(m) {
+  payMethod = m;
+  document.getElementById('payCoD').classList.toggle('selected', m==='cod');
+  document.getElementById('payBtc').classList.toggle('selected', m==='btc');
+  const box = document.getElementById('btcBox');
+  m==='btc' && cart.length ? box.classList.add('show') : box.classList.remove('show');
+  const btn = document.getElementById('checkoutBtn');
+  if (!btn.disabled) btn.textContent = tr(m==='btc'?'checkoutBtc':'checkoutCod');
+}
+
+function copyBTC() {
+  navigator.clipboard.writeText(BTC_ADDR).then(() => showToast(tr('toastCopied')));
+}
+
+// ── Order ─────────────────────────────────────────────────────────────────────
+function placeOrder() {
+  if (!cart.length) return;
+  const sub = cart.reduce((s,c) => s+c.price*c.qty, 0);
+  const total = (sub+1.50).toFixed(2);
+  const btc = ((sub+1.50)/BTC_RATE).toFixed(6);
+  const oid = 'BB-'+Math.random().toString(36).substr(2,6).toUpperCase();
+  const time = new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  const count = cart.reduce((s,c)=>s+c.qty,0);
+
+  document.getElementById('successIcon').textContent = payMethod==='btc'?'₿':'✅';
+  document.getElementById('successTitle').textContent = tr('successTitle');
+  document.getElementById('successSub').innerHTML = payMethod==='btc'
+    ? tr('successSubBtc', btc) : tr('successSubCod', total);
+  document.getElementById('successDetails').innerHTML = `
+    <div class="so-row"><span>${tr('orderId')}</span><span>${oid}</span></div>
+    <div class="so-row"><span>${tr('orderTime')}</span><span>${time}</span></div>
+    <div class="so-row"><span>${tr('orderItems')}</span><span>${tr('itemsCount',count)}</span></div>
+    <div class="so-row"><span>${tr('orderTotal')}</span><span>$${total}</span></div>
+    <div class="so-row"><span>${tr('orderPayment')}</span><span>${payMethod==='btc'?tr('btcPayLabel'):tr('codPayLabel')}</span></div>`;
+
+  if (window.Telegram?.WebApp) {
+    window.Telegram.WebApp.sendData(JSON.stringify({
+      orderId:oid, total, payment:payMethod,
+      items: cart.map(c=>({name:c.en.name, qty:c.qty, price:c.price}))
+    }));
+  }
+  cart=[]; updateCartBadge(); closeCart();
+  document.getElementById('successScreen').classList.add('show');
+}
+
+function closeSuccess() {
+  document.getElementById('successScreen').classList.remove('show');
+  payMethod='cod'; selectPay('cod');
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.innerHTML = msg;
+  Object.assign(t.style, {
+    position:'fixed', bottom:'110px', left:'50%',
+    transform:'translateX(-50%)',
+    background:'#2a1c0a', color:'#f5ead8',
+    padding:'10px 20px', borderRadius:'50px',
+    fontSize:'13px', fontWeight:'600',
+    border:'1px solid #3a2e22',
+    zIndex:'400', whiteSpace:'nowrap',
+    fontFamily: lang==='ar' ? 'Tajawal,sans-serif' : 'DM Sans,sans-serif',
+  });
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2200);
+}
+
+// ── Telegram init ─────────────────────────────────────────────────────────────
+if (window.Telegram?.WebApp) {
+  const tg = window.Telegram.WebApp;
+  tg.ready(); tg.expand();
+  tg.setHeaderColor('#0e0b07');
+  tg.setBackgroundColor('#0e0b07');
+  // Auto-switch to Arabic if Telegram user's language is Arabic
+  if (tg.initDataUnsafe?.user?.language_code === 'ar') {
+    lang = 'ar';
+    document.documentElement.setAttribute('lang', 'ar');
+    document.documentElement.setAttribute('dir', 'rtl');
+  }
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+applyI18n();
+renderTabs();
+renderMenu('all');
+selectPay('cod');
+</script>
+</body>
+</html>
