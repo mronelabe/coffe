@@ -9,16 +9,16 @@
 <style>
   /* Fresh Green Palette — Matcha & Mint */
   :root {
-    --bg: #eef4e6;       /* soft matcha background */
-    --surface: #f9fbf4;  /* creamy mint white */
+    --bg: #eef4e6;
+    --surface: #f9fbf4;
     --card: #ffffff;
     --border: #cfe0c3;
-    --accent: #2c6e49;    /* deep forest green */
-    --accent2: #4c956c;   /* vibrant sage */
-    --gold: #d4af37;      /* subtle warm accent */
-    --text: #1e2f2b;      /* dark tea green */
+    --accent: #2c6e49;
+    --accent2: #4c956c;
+    --gold: #d4af37;
+    --text: #1e2f2b;
     --muted: #5a7d6a;
-    --btc: #f7931a;       /* bitcoin orange remains for visibility */
+    --btc: #f7931a;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,13 +41,7 @@
     font-family: 'Tajawal', sans-serif !important;
     font-weight: 900; letter-spacing: 0 !important;
   }
-  html[lang="ar"] .sheet-title,
-  html[lang="ar"] .section-title,
-  html[lang="ar"] .success-title {
-    font-family: 'Tajawal', sans-serif !important;
-  }
 
-  /* ── Header with green gradient ── */
   .header {
     background: linear-gradient(135deg, #2b5e3b 0%, #1c402a 100%);
     padding: 20px 20px 16px;
@@ -58,42 +52,34 @@
   .logo {
     font-family: 'Playfair Display', serif;
     font-size: 22px; font-weight: 900;
-    color: #f1f9e6; letter-spacing: 0.5px;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    color: #f1f9e6;
   }
   .logo span { color: var(--gold); }
   .header-right { display: flex; align-items: center; gap: 8px; }
 
-  .lang-btn {
+  .lang-btn, .cart-btn {
     background: rgba(255,255,240,0.2);
     border: 1px solid #c8e0b0;
     border-radius: 50px;
     padding: 7px 12px;
     font-size: 12px; font-weight: 700;
     color: #f9fbe7;
-    cursor: pointer; transition: all 0.2s;
-  }
-  .lang-btn:active { transform: scale(0.95); background: var(--accent2); }
-
-  .cart-btn {
-    background: rgba(255,255,240,0.2);
-    border: 1px solid #c8e0b0;
-    border-radius: 50px;
-    padding: 8px 14px;
-    font-size: 13px; color: #fef9e6;
-    cursor: pointer; display: flex; align-items: center; gap: 6px;
+    cursor: pointer;
     transition: all 0.2s;
   }
-  .cart-btn:active { transform: scale(0.95); }
+  .cart-btn { padding: 8px 14px; display: flex; align-items: center; gap: 6px; }
+  .lang-btn:active, .cart-btn:active { transform: scale(0.95); }
   .cart-badge {
     background: var(--accent2);
-    color: #1f3b2c; border-radius: 50%;
+    color: #1f3b2c;
+    border-radius: 50%;
     width: 18px; height: 18px;
     font-size: 10px; font-weight: 800;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  /* ── Hero with green leaf vibes ── */
   .hero {
     padding: 28px 20px 20px;
     background: radial-gradient(ellipse at top, #d9e9cf 0%, #eef4e6 80%);
@@ -103,18 +89,14 @@
     font-size: 32px; line-height: 1.2;
     font-weight: 900; color: #1e4620;
   }
-  html[lang="ar"] .hero h1 {
-    font-family: 'Tajawal', sans-serif;
-    font-size: 30px; line-height: 1.4;
-  }
-  .hero h1 em { color: var(--accent); font-style: normal; background: none; }
+  .hero h1 em { color: var(--accent); font-style: normal; }
   .hero p { margin-top: 8px; color: #4f6b3e; font-size: 14px; font-weight: 500; }
 
-  /* ── Tabs fresh green ── */
   .tabs {
     display: flex; gap: 8px;
     padding: 16px 20px;
-    overflow-x: auto; scrollbar-width: none;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
   .tabs::-webkit-scrollbar { display: none; }
   .tab {
@@ -122,15 +104,13 @@
     background: var(--card); border: 1px solid var(--border);
     font-size: 13px; white-space: nowrap;
     cursor: pointer; color: #5b7c4a;
-    transition: all 0.2s; flex-shrink: 0;
+    transition: all 0.2s;
   }
   .tab.active {
     background: var(--accent); border-color: var(--accent);
     color: #fff; font-weight: 600;
-    box-shadow: 0 2px 6px rgba(44,110,73,0.2);
   }
 
-  /* ── Menu Card Green refresh ── */
   .section-title {
     font-family: 'Playfair Display', serif;
     font-size: 18px; font-weight: 700;
@@ -143,19 +123,19 @@
   .menu-item {
     background: var(--card); border: 1px solid var(--border);
     border-radius: 20px; overflow: hidden;
-    cursor: pointer; transition: transform 0.15s, box-shadow 0.2s;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.2s;
   }
   .menu-item:active { transform: scale(0.97); }
-  .menu-item:hover { border-color: var(--accent2); box-shadow: 0 6px 14px rgba(0,0,0,0.05); }
+  .menu-item:hover { border-color: var(--accent2); }
   .item-emoji {
     font-size: 48px; text-align: center;
     padding: 18px 0 10px;
     background: linear-gradient(180deg, #ecf5e3 0%, var(--card) 100%);
-    line-height: 1;
   }
   .item-info { padding: 10px 12px 12px; }
-  .item-name { font-size: 14px; font-weight: 700; color: #2c4535; line-height: 1.3; }
-  .item-desc { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+  .item-name { font-size: 14px; font-weight: 700; color: #2c4535; }
+  .item-desc { font-size: 11px; color: var(--muted); margin-top: 3px; }
   .item-footer {
     display: flex; align-items: center; justify-content: space-between;
     margin-top: 10px;
@@ -165,22 +145,20 @@
     width: 28px; height: 28px; border-radius: 50%;
     background: var(--accent2); border: none; color: white;
     font-size: 18px; font-weight: 700;
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .add-btn:hover { background: var(--accent); }
-
   .popular { position: relative; }
   .badge {
     position: absolute; top: 8px; right: 8px;
     background: var(--gold); color: #2a3a1f;
     font-size: 9px; font-weight: 800;
     padding: 2px 7px; border-radius: 50px;
-    letter-spacing: 0.5px; text-transform: uppercase;
   }
-  html[dir="rtl"] .badge { right: auto; left: 8px; }
 
-  /* ── Cart overlay & sheet (green-toned) ── */
   .overlay {
     position: fixed; inset: 0; background: rgba(30, 40, 20, 0.6);
     z-index: 200; display: none; backdrop-filter: blur(4px);
@@ -203,15 +181,17 @@
   .sheet-title {
     font-family: 'Playfair Display', serif;
     font-size: 20px; font-weight: 700;
-    padding: 10px 20px 16px; border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 20px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     color: #2c6e49;
   }
   .close-sheet {
     background: var(--card); border: 1px solid var(--border);
     border-radius: 50%; width: 30px; height: 30px;
-    font-size: 16px; cursor: pointer; color: #5f8b6f;
-    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; cursor: pointer;
   }
 
   .cart-items { padding: 12px 20px; }
@@ -219,24 +199,21 @@
     display: flex; align-items: center; gap: 12px;
     padding: 12px 0; border-bottom: 1px solid var(--border);
   }
-  .ci-emoji { font-size: 28px; flex-shrink: 0; }
+  .ci-emoji { font-size: 28px; }
   .ci-info { flex: 1; }
   .ci-name { font-size: 14px; font-weight: 700; color: #2a4b3a; }
-  .ci-price { font-size: 12px; color: var(--accent); font-weight: 600; margin-top: 2px; }
+  .ci-price { font-size: 12px; color: var(--accent); font-weight: 600; }
   .ci-qty { display: flex; align-items: center; gap: 8px; }
   .qty-btn {
     width: 26px; height: 26px; border-radius: 50%;
-    border: 1px solid #cde2bb; background: white; color: #2c6e49;
+    border: 1px solid #cde2bb; background: white;
     font-size: 16px; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
   }
-  .qty-btn:hover { background: var(--accent2); border-color: var(--accent2); color: white; }
-  .qty-num { font-size: 14px; font-weight: 700; min-width: 20px; text-align: center; }
+  .qty-btn:hover { background: var(--accent2); color: white; }
 
   .order-summary {
     background: #eaf3e2; margin: 8px 20px 0;
-    border-radius: 20px; padding: 14px 16px; border: 1px solid #cde0bd;
+    border-radius: 20px; padding: 14px 16px;
   }
   .summary-row {
     display: flex; justify-content: space-between;
@@ -247,7 +224,49 @@
     border-top: 1px solid #bdd3a8; margin-top: 8px; padding-top: 10px;
   }
 
-  .payment-section { padding: 16px 20px; }
+  /* Phone Input Section */
+  .phone-section {
+    padding: 16px 20px 8px;
+  }
+  .phone-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #2c6e49;
+    margin-bottom: 8px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .phone-input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 28px;
+    border: 1.5px solid var(--border);
+    background: white;
+    font-size: 15px;
+    color: var(--text);
+    outline: none;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .phone-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(44,110,73,0.1);
+  }
+  html[lang="ar"] .phone-input {
+    font-family: 'Tajawal', sans-serif;
+    text-align: right;
+  }
+  .phone-error {
+    font-size: 11px;
+    color: #d9534f;
+    margin-top: 6px;
+    padding-left: 8px;
+    display: none;
+  }
+  .phone-error.show { display: block; }
+
+  .payment-section { padding: 8px 20px 0; }
   .pay-label {
     font-size: 12px; color: #608a6b;
     text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 700;
@@ -256,47 +275,33 @@
   .pay-method {
     flex: 1; padding: 14px 10px; border-radius: 18px;
     border: 2px solid #cfdfc1; background: white;
-    cursor: pointer; text-align: center; transition: all 0.2s;
+    cursor: pointer; text-align: center;
   }
   .pay-method.selected { border-color: var(--accent); background: #eef6e6; }
   .pay-method.btc.selected { border-color: var(--btc); background: #fff7e8; }
-  .pay-icon { font-size: 22px; margin-bottom: 4px; }
-  .pay-name { font-size: 12px; font-weight: 700; color: #2f543f; }
-  .pay-desc { font-size: 10px; color: #6b8f72; margin-top: 2px; }
 
   .btc-box {
-    margin: 0 20px; background: #fef9e6;
+    margin: 12px 20px; background: #fef9e6;
     border: 1px solid #fce6b4;
     border-radius: 20px; padding: 14px; display: none;
   }
   .btc-box.show { display: block; }
-  .btc-title { font-size: 12px; color: var(--btc); font-weight: 700; margin-bottom: 6px; }
   .btc-address {
-    font-size: 11px; color: #4a5c3c; word-break: break-all; line-height: 1.5;
-    background: #fafcf5; padding: 8px 10px; border-radius: 12px;
-    cursor: pointer; border: 1px solid #e2e9d5; transition: border-color 0.2s;
+    font-size: 11px; background: #fafcf5; padding: 8px 10px;
+    border-radius: 12px; cursor: pointer;
     direction: ltr; text-align: left;
   }
-  .btc-address:hover { border-color: var(--btc); }
-  .btc-amount { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
-  .btc-amount span:first-child { font-size: 12px; color: #5e7c5a; }
-  .btc-amount span:last-child { font-size: 14px; font-weight: 700; color: var(--btc); direction: ltr; }
-  .copy-hint { font-size: 10px; color: #8ba778; margin-top: 6px; text-align: right; }
 
-  .checkout-wrap { padding: 16px 20px 20px; }
+  .checkout-wrap { padding: 12px 20px 20px; }
   .checkout-btn {
     width: 100%; padding: 16px; border-radius: 40px; border: none;
     background: linear-gradient(135deg, #2c6e49, #4c956c);
     color: white; font-size: 16px; font-weight: 800;
-    cursor: pointer; letter-spacing: 0.3px;
-    transition: opacity 0.2s, transform 0.15s;
-    font-family: 'DM Sans', sans-serif;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: opacity 0.2s;
   }
-  .checkout-btn:active { transform: scale(0.98); opacity: 0.9; }
-  .checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; background: #9bc0a4; }
+  .checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  /* ── Success screen (green delight) ── */
   .success-screen {
     position: fixed; inset: 0; background: #f1f8ec;
     z-index: 300; display: none;
@@ -314,26 +319,20 @@
     font-size: 28px; font-weight: 900;
     color: var(--accent); margin-top: 20px;
   }
-  .success-sub { font-size: 15px; color: #577c58; margin-top: 10px; line-height: 1.6; }
   .success-order {
     margin-top: 24px; background: white;
     border: 1px solid #cfe0c3; border-radius: 24px;
-    padding: 16px 20px; width: 100%; text-align: left;
+    padding: 16px 20px; width: 100%;
   }
   .so-row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; }
-  .so-row span:first-child { color: #698b62; }
-  .so-row span:last-child { font-weight: 700; color: #2e5a42; }
   .close-success {
     margin-top: 28px; padding: 14px 40px; border-radius: 50px;
     border: 1px solid var(--accent2); background: white;
     color: var(--accent); font-size: 15px; font-weight: 600;
-    cursor: pointer; transition: all 0.2s;
+    cursor: pointer;
   }
-  .close-success:hover { background: var(--accent2); color: white; border-color: var(--accent2); }
-
+  .close-success:hover { background: var(--accent2); color: white; }
   .empty-cart { text-align: center; padding: 40px 20px; }
-  .empty-cart .e-icon { font-size: 50px; margin-bottom: 12px; opacity: 0.6; }
-  .empty-cart p { color: #6a8b6c; font-size: 14px; }
 </style>
 </head>
 <body>
@@ -355,7 +354,6 @@
 </div>
 
 <div class="tabs" id="tabsEl"></div>
-
 <div class="section-title" id="menuTitle">Our Menu 🌱</div>
 <div class="menu-grid" id="menuGrid"></div>
 
@@ -369,6 +367,14 @@
   </div>
   <div class="cart-items" id="cartItemsEl"></div>
   <div class="order-summary" id="orderSummary"></div>
+  
+  <!-- Phone Number Section (required before order) -->
+  <div class="phone-section">
+    <div class="phone-label" id="phoneLabel">📞 PHONE NUMBER</div>
+    <input type="tel" class="phone-input" id="phoneInput" placeholder="+1234567890" value="">
+    <div class="phone-error" id="phoneError">Please enter a valid phone number</div>
+  </div>
+
   <div class="payment-section">
     <div class="pay-label" id="payLabel">Payment Method</div>
     <div class="pay-methods">
@@ -386,9 +392,7 @@
   </div>
   <div class="btc-box" id="btcBox">
     <div class="btc-title" id="btcSendLabel">₿ SEND BITCOIN TO:</div>
-    <div class="btc-address" id="btcAddr" onclick="copyBTC()">
-      bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
-    </div>
+    <div class="btc-address" id="btcAddr" onclick="copyBTC()">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</div>
     <div class="btc-amount">
       <span id="btcAmountLabel">Amount to send:</span>
       <span id="btcTotal">≈ 0.00000 BTC</span>
@@ -396,7 +400,7 @@
     <div class="copy-hint" id="btcCopyHint">👆 Tap address to copy</div>
   </div>
   <div class="checkout-wrap">
-    <button class="checkout-btn" id="checkoutBtn" onclick="placeOrder()" disabled>Place Order</button>
+    <button class="checkout-btn" id="checkoutBtn" onclick="validateAndPlaceOrder()" disabled>Place Order</button>
   </div>
 </div>
 
@@ -409,13 +413,23 @@
 </div>
 
 <script>
-// ── i18n (Bilingual, green shop) ──────────────────────────────────────────────
+// ── Telegram Bot Configuration (REPLACE WITH YOUR BOT TOKEN AND CHAT ID) ──
+// IMPORTANT: You must replace these with your actual Telegram Bot Token and your Chat ID
+// To get updates: create a bot via @BotFather, then get your chat ID from @userinfobot
+const TELEGRAM_BOT_TOKEN = "YOUR_BOT_TOKEN_HERE";  // <-- REPLACE WITH YOUR BOT TOKEN
+const TELEGRAM_CHAT_ID = "YOUR_CHAT_ID_HERE";      // <-- REPLACE WITH YOUR TELEGRAM CHAT ID
+
+// Fallback: if token not set, we still show order but console log (for demo)
+const TELEGRAM_ENABLED = TELEGRAM_BOT_TOKEN !== "YOUR_BOT_TOKEN_HERE" && TELEGRAM_CHAT_ID !== "YOUR_CHAT_ID_HERE";
+
+// ── i18n Data ──────────────────────────────────────────────────────────────
 const i18n = {
   en: {
     langBtn: 'عربي', cartLabel: 'Cart',
     heroTitle: 'Your fresh<br>cup of <em>nature</em>',
     heroSub: 'Organic · Pay with Cash or Bitcoin ₿',
     menuTitle: 'Our Menu 🌱', cartSheetTitle: 'Your Order 🍃',
+    phoneLabel: '📞 PHONE NUMBER (required for delivery)',
     payLabel: 'Payment Method', codName: 'Cash on Delivery',
     codDesc: 'Pay when you receive', btcName: 'Bitcoin', btcDesc: 'Crypto payment',
     btcSendLabel: '₿ SEND BITCOIN TO:', btcAmountLabel: 'Amount to send:',
@@ -433,6 +447,7 @@ const i18n = {
     emptyCart: 'Your cart is empty.<br>Add some organic coffee!',
     toastAdded: (name) => `${name} added to cart!`,
     toastCopied: '₿ Address copied!', popular: '★ Popular',
+    phoneErrorMsg: 'Please enter a valid phone number (e.g., +1234567890)',
     tabs: [
       { key:'all', label:'☕ All' }, { key:'hot', label:'🔥 Hot' },
       { key:'cold', label:'🧊 Cold' }, { key:'food', label:'🥐 Food' },
@@ -444,6 +459,7 @@ const i18n = {
     heroTitle: 'كوبك الطازج<br>من <em>الطبيعة</em>',
     heroSub: 'عضوي · ادفع نقداً أو بالبيتكوين ₿',
     menuTitle: 'قائمة طعامنا 🌱', cartSheetTitle: 'طلبك 🍃',
+    phoneLabel: '📞 رقم الهاتف (مطلوب للتوصيل)',
     payLabel: 'طريقة الدفع', codName: 'الدفع عند الاستلام',
     codDesc: 'ادفع عند وصول الطلب', btcName: 'بيتكوين', btcDesc: 'دفع بالعملة الرقمية',
     btcSendLabel: '₿ أرسل البيتكوين إلى:', btcAmountLabel: 'المبلغ المطلوب:',
@@ -461,6 +477,7 @@ const i18n = {
     emptyCart: 'سلتك فارغة.<br>أضف قهوتك العضوية!',
     toastAdded: (name) => `تمت إضافة ${name} للسلة!`,
     toastCopied: '₿ تم نسخ العنوان!', popular: '★ الأكثر طلباً',
+    phoneErrorMsg: 'الرجاء إدخال رقم هاتف صالح (مثال: +1234567890)',
     tabs: [
       { key:'all', label:'☕ الكل' }, { key:'hot', label:'🔥 ساخن' },
       { key:'cold', label:'🧊 بارد' }, { key:'food', label:'🥐 طعام' },
@@ -469,47 +486,22 @@ const i18n = {
   }
 };
 
-// Menu unchanged but with green spirit
+// Menu Data
 const menu = [
-  { id:1,  emoji:'☕', price:2.50, cat:'hot',     popular:true,
-    en:{name:'Espresso',      desc:'Pure & intense shot'},
-    ar:{name:'إسبريسو',       desc:'جرعة قوية ومركزة'} },
-  { id:2,  emoji:'🍵', price:3.80, cat:'hot',
-    en:{name:'Cappuccino',    desc:'Creamy milk foam'},
-    ar:{name:'كابتشينو',      desc:'رغوة حليب كريمية'} },
-  { id:3,  emoji:'☕', price:4.00, cat:'hot',     popular:true,
-    en:{name:'Flat White',    desc:'Silky & smooth'},
-    ar:{name:'فلات وايت',     desc:'ناعم وسلس'} },
-  { id:4,  emoji:'🧇', price:4.50, cat:'hot',
-    en:{name:'Caramel Latte', desc:'Sweet caramel twist'},
-    ar:{name:'لاتيه كراميل',  desc:'لمسة كراميل حلوة'} },
-  { id:5,  emoji:'🧊', price:4.20, cat:'cold',    popular:true,
-    en:{name:'Iced Latte',    desc:'Chilled & refreshing'},
-    ar:{name:'آيس لاتيه',     desc:'منعش ومبرد'} },
-  { id:6,  emoji:'🥤', price:4.80, cat:'cold',
-    en:{name:'Cold Brew',     desc:'12-hour slow brew'},
-    ar:{name:'كولد برو',      desc:'تخمير بطيء ١٢ ساعة'} },
-  { id:7,  emoji:'🥛', price:5.50, cat:'cold',
-    en:{name:'Frappuccino',   desc:'Blended ice & cream'},
-    ar:{name:'فرابتشينو',     desc:'ثلج وكريمة مخفوقة'} },
-  { id:8,  emoji:'🥐', price:3.00, cat:'food',    popular:true,
-    en:{name:'Croissant',     desc:'Butter & flaky'},
-    ar:{name:'كرواسون',       desc:'زبدة ومقرمش'} },
-  { id:9,  emoji:'🍰', price:4.50, cat:'food',
-    en:{name:'Cheesecake',    desc:'NY style slice'},
-    ar:{name:'تشيز كيك',      desc:'قطعة على الطراز النيويوركي'} },
-  { id:10, emoji:'🥑', price:7.00, cat:'food',
-    en:{name:'Avocado Toast', desc:'Sourdough base'},
-    ar:{name:'توست أفوكادو',  desc:'خبز العجين المخمر'} },
-  { id:11, emoji:'₿',  price:6.00, cat:'special', popular:true,
-    en:{name:'BTC Blend',     desc:'Our crypto special'},
-    ar:{name:'مزيج البيتكوين',desc:'خليطنا الرقمي المميز'} },
-  { id:12, emoji:'⚡', price:5.80, cat:'special',
-    en:{name:"Miner's Mocha", desc:'Dark & powerful'},
-    ar:{name:'موكا المعدن',   desc:'داكن وقوي'} },
+  { id:1, emoji:'☕', price:2.50, cat:'hot', popular:true, en:{name:'Espresso', desc:'Pure & intense shot'}, ar:{name:'إسبريسو', desc:'جرعة قوية ومركزة'} },
+  { id:2, emoji:'🍵', price:3.80, cat:'hot', en:{name:'Cappuccino', desc:'Creamy milk foam'}, ar:{name:'كابتشينو', desc:'رغوة حليب كريمية'} },
+  { id:3, emoji:'☕', price:4.00, cat:'hot', popular:true, en:{name:'Flat White', desc:'Silky & smooth'}, ar:{name:'فلات وايت', desc:'ناعم وسلس'} },
+  { id:4, emoji:'🧇', price:4.50, cat:'hot', en:{name:'Caramel Latte', desc:'Sweet caramel twist'}, ar:{name:'لاتيه كراميل', desc:'لمسة كراميل حلوة'} },
+  { id:5, emoji:'🧊', price:4.20, cat:'cold', popular:true, en:{name:'Iced Latte', desc:'Chilled & refreshing'}, ar:{name:'آيس لاتيه', desc:'منعش ومبرد'} },
+  { id:6, emoji:'🥤', price:4.80, cat:'cold', en:{name:'Cold Brew', desc:'12-hour slow brew'}, ar:{name:'كولد برو', desc:'تخمير بطيء ١٢ ساعة'} },
+  { id:7, emoji:'🥛', price:5.50, cat:'cold', en:{name:'Frappuccino', desc:'Blended ice & cream'}, ar:{name:'فرابتشينو', desc:'ثلج وكريمة مخفوقة'} },
+  { id:8, emoji:'🥐', price:3.00, cat:'food', popular:true, en:{name:'Croissant', desc:'Butter & flaky'}, ar:{name:'كرواسون', desc:'زبدة ومقرمش'} },
+  { id:9, emoji:'🍰', price:4.50, cat:'food', en:{name:'Cheesecake', desc:'NY style slice'}, ar:{name:'تشيز كيك', desc:'قطعة على الطراز النيويوركي'} },
+  { id:10, emoji:'🥑', price:7.00, cat:'food', en:{name:'Avocado Toast', desc:'Sourdough base'}, ar:{name:'توست أفوكادو', desc:'خبز العجين المخمر'} },
+  { id:11, emoji:'₿', price:6.00, cat:'special', popular:true, en:{name:'BTC Blend', desc:'Our crypto special'}, ar:{name:'مزيج البيتكوين', desc:'خليطنا الرقمي المميز'} },
+  { id:12, emoji:'⚡', price:5.80, cat:'special', en:{name:"Miner's Mocha", desc:'Dark & powerful'}, ar:{name:'موكا المعدن', desc:'داكن وقوي'} },
 ];
 
-// Constants
 const BTC_RATE = 68000;
 const BTC_ADDR = 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh';
 let cart = [], payMethod = 'cod', currentCat = 'all', lang = 'en';
@@ -519,9 +511,8 @@ const tr = (key, ...a) => { const v = L()[key]; return typeof v === 'function' ?
 
 function toggleLang() {
   lang = lang === 'en' ? 'ar' : 'en';
-  const html = document.documentElement;
-  html.setAttribute('lang', lang);
-  html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  document.documentElement.setAttribute('lang', lang);
+  document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
   applyI18n();
   renderTabs();
   renderMenu(currentCat);
@@ -530,150 +521,156 @@ function toggleLang() {
 
 function applyI18n() {
   const ids = ['langBtn','cartLabel','heroTitle','heroSub','menuTitle','cartSheetTitle',
-    'payLabel','codName','codDesc','btcName','btcDesc','btcSendLabel',
+    'phoneLabel','payLabel','codName','codDesc','btcName','btcDesc','btcSendLabel',
     'btcAmountLabel','btcCopyHint','backToMenuBtn'];
-  ids.forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    let val = L()[id];
-    if (val !== undefined) el.innerHTML = val;
-  });
+  ids.forEach(id => { const el = document.getElementById(id); if(el) el.innerHTML = L()[id] || L()[id]; });
   const btn = document.getElementById('checkoutBtn');
   if (!btn.disabled) btn.textContent = tr(payMethod === 'btc' ? 'checkoutBtc' : 'checkoutCod');
+  const errorDiv = document.getElementById('phoneError');
+  if(errorDiv) errorDiv.textContent = tr('phoneErrorMsg');
 }
 
 function renderTabs() {
-  document.getElementById('tabsEl').innerHTML = L().tabs.map(tab => `
-    <div class="tab${currentCat === tab.key ? ' active' : ''}"
-         onclick="filterCat('${tab.key}', this)">${tab.label}</div>
-  `).join('');
+  document.getElementById('tabsEl').innerHTML = L().tabs.map(tab => `<div class="tab${currentCat === tab.key ? ' active' : ''}" onclick="filterCat('${tab.key}', this)">${tab.label}</div>`).join('');
 }
 
 function renderMenu(cat) {
   const items = cat === 'all' ? menu : menu.filter(m => m.cat === cat);
-  document.getElementById('menuGrid').innerHTML = items.map(item => {
-    const loc = item[lang];
-    return `
-      <div class="menu-item${item.popular ? ' popular' : ''}" onclick="addToCart(${item.id})">
-        ${item.popular ? `<span class="badge">${tr('popular')}</span>` : ''}
-        <div class="item-emoji">${item.emoji}</div>
-        <div class="item-info">
-          <div class="item-name">${loc.name}</div>
-          <div class="item-desc">${loc.desc}</div>
-          <div class="item-footer">
-            <div class="item-price">$${item.price.toFixed(2)}</div>
-            <button class="add-btn" onclick="event.stopPropagation();addToCart(${item.id})">+</button>
-          </div>
-        </div>
-      </div>`;
-  }).join('');
+  document.getElementById('menuGrid').innerHTML = items.map(item => `<div class="menu-item${item.popular ? ' popular' : ''}" onclick="addToCart(${item.id})">${item.popular ? `<span class="badge">${tr('popular')}</span>` : ''}<div class="item-emoji">${item.emoji}</div><div class="item-info"><div class="item-name">${item[lang].name}</div><div class="item-desc">${item[lang].desc}</div><div class="item-footer"><div class="item-price">$${item.price.toFixed(2)}</div><button class="add-btn" onclick="event.stopPropagation();addToCart(${item.id})">+</button></div></div></div>`).join('');
 }
 
-function filterCat(cat, el) {
-  currentCat = cat;
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  renderMenu(cat);
-}
+function filterCat(cat, el) { currentCat = cat; document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); el.classList.add('active'); renderMenu(cat); }
 
-function addToCart(id) {
-  const item = menu.find(m => m.id === id);
-  const ex = cart.find(c => c.id === id);
-  ex ? ex.qty++ : cart.push({...item, qty:1});
-  updateCartBadge();
-  showToast(`${item.emoji} ${tr('toastAdded', item[lang].name)}`);
-}
-
-function updateCartBadge() {
-  document.getElementById('cartCount').textContent = cart.reduce((s,c) => s+c.qty, 0);
-}
-
+function addToCart(id) { const item = menu.find(m => m.id === id); const ex = cart.find(c => c.id === id); ex ? ex.qty++ : cart.push({...item, qty:1}); updateCartBadge(); showToast(`${item.emoji} ${tr('toastAdded', item[lang].name)}`); }
+function updateCartBadge() { document.getElementById('cartCount').textContent = cart.reduce((s,c) => s+c.qty, 0); }
 function openCart() { renderCart(); document.getElementById('overlay').classList.add('open'); document.getElementById('cartSheet').classList.add('open'); }
 function closeCart() { document.getElementById('overlay').classList.remove('open'); document.getElementById('cartSheet').classList.remove('open'); }
 
 function renderCart() {
   const el = document.getElementById('cartItemsEl');
-  if (cart.length === 0) {
-    el.innerHTML = `<div class="empty-cart"><div class="e-icon">🌿</div><p>${tr('emptyCart')}</p></div>`;
-    document.getElementById('orderSummary').innerHTML = '';
-    document.getElementById('checkoutBtn').disabled = true;
-    document.getElementById('btcBox').classList.remove('show');
-    return;
-  }
-  el.innerHTML = cart.map(c => `
-    <div class="cart-item">
-      <div class="ci-emoji">${c.emoji}</div>
-      <div class="ci-info">
-        <div class="ci-name">${c[lang].name}</div>
-        <div class="ci-price">$${(c.price * c.qty).toFixed(2)}</div>
-      </div>
-      <div class="ci-qty">
-        <button class="qty-btn" onclick="changeQty(${c.id},-1)">−</button>
-        <span class="qty-num">${c.qty}</span>
-        <button class="qty-btn" onclick="changeQty(${c.id},1)">+</button>
-      </div>
-    </div>`).join('');
-  const sub = cart.reduce((s,c) => s+c.price*c.qty, 0);
-  const del = 1.50, total = sub + del;
-  document.getElementById('orderSummary').innerHTML = `
-    <div class="summary-row"><span>${tr('subtotal')}</span><span>$${sub.toFixed(2)}</span></div>
-    <div class="summary-row"><span>${tr('delivery')}</span><span>$${del.toFixed(2)}</span></div>
-    <div class="summary-row total"><span>${tr('total')}</span><span>$${total.toFixed(2)}</span></div>`;
+  if (cart.length === 0) { el.innerHTML = `<div class="empty-cart"><div class="e-icon">🌿</div><p>${tr('emptyCart')}</p></div>`; document.getElementById('orderSummary').innerHTML = ''; document.getElementById('checkoutBtn').disabled = true; document.getElementById('btcBox').classList.remove('show'); return; }
+  el.innerHTML = cart.map(c => `<div class="cart-item"><div class="ci-emoji">${c.emoji}</div><div class="ci-info"><div class="ci-name">${c[lang].name}</div><div class="ci-price">$${(c.price * c.qty).toFixed(2)}</div></div><div class="ci-qty"><button class="qty-btn" onclick="changeQty(${c.id},-1)">−</button><span class="qty-num">${c.qty}</span><button class="qty-btn" onclick="changeQty(${c.id},1)">+</button></div></div>`).join('');
+  const sub = cart.reduce((s,c) => s+c.price*c.qty, 0); const total = sub + 1.50;
+  document.getElementById('orderSummary').innerHTML = `<div class="summary-row"><span>${tr('subtotal')}</span><span>$${sub.toFixed(2)}</span></div><div class="summary-row"><span>${tr('delivery')}</span><span>$${1.50.toFixed(2)}</span></div><div class="summary-row total"><span>${tr('total')}</span><span>$${total.toFixed(2)}</span></div>`;
   document.getElementById('btcTotal').textContent = `≈ ${(total/BTC_RATE).toFixed(6)} BTC`;
-  document.getElementById('checkoutBtn').disabled = false;
-  document.getElementById('checkoutBtn').textContent = tr(payMethod==='btc'?'checkoutBtc':'checkoutCod');
-  if (payMethod === 'btc') document.getElementById('btcBox').classList.add('show');
+  document.getElementById('checkoutBtn').disabled = false; document.getElementById('checkoutBtn').textContent = tr(payMethod==='btc'?'checkoutBtc':'checkoutCod');
+  if (payMethod === 'btc') document.getElementById('btcBox').classList.add('show'); else document.getElementById('btcBox').classList.remove('show');
 }
 
-function changeQty(id, d) {
-  const i = cart.findIndex(c => c.id === id);
-  if (i < 0) return;
-  cart[i].qty += d;
-  if (cart[i].qty <= 0) cart.splice(i, 1);
-  updateCartBadge(); renderCart();
-}
-
-function selectPay(m) {
-  payMethod = m;
-  document.getElementById('payCoD').classList.toggle('selected', m==='cod');
-  document.getElementById('payBtc').classList.toggle('selected', m==='btc');
-  const box = document.getElementById('btcBox');
-  if(m==='btc' && cart.length) box.classList.add('show'); else box.classList.remove('show');
-  const btn = document.getElementById('checkoutBtn');
-  if (!btn.disabled) btn.textContent = tr(m==='btc'?'checkoutBtc':'checkoutCod');
-}
-
+function changeQty(id, d) { const i = cart.findIndex(c => c.id === id); if(i<0)return; cart[i].qty += d; if(cart[i].qty <= 0) cart.splice(i,1); updateCartBadge(); renderCart(); }
+function selectPay(m) { payMethod = m; document.getElementById('payCoD').classList.toggle('selected', m==='cod'); document.getElementById('payBtc').classList.toggle('selected', m==='btc'); const box = document.getElementById('btcBox'); if(m==='btc' && cart.length) box.classList.add('show'); else box.classList.remove('show'); const btn = document.getElementById('checkoutBtn'); if(!btn.disabled) btn.textContent = tr(m==='btc'?'checkoutBtc':'checkoutCod'); }
 function copyBTC() { navigator.clipboard.writeText(BTC_ADDR).then(() => showToast(tr('toastCopied'))); }
 
-function placeOrder() {
-  if (!cart.length) return;
+// ── Phone Validation & Order with Telegram ──────────────────────────────────
+function validatePhone() {
+  const phone = document.getElementById('phoneInput').value.trim();
+  const errorDiv = document.getElementById('phoneError');
+  // Basic international phone validation (simple but effective)
+  const phoneRegex = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{4,12}$/;
+  if (!phone || !phoneRegex.test(phone)) {
+    errorDiv.classList.add('show');
+    return null;
+  }
+  errorDiv.classList.remove('show');
+  return phone;
+}
+
+async function sendOrderToTelegram(orderDetails) {
+  if (!TELEGRAM_ENABLED) {
+    console.log("⚠️ Telegram bot not configured. Order details:", orderDetails);
+    return false;
+  }
+  
+  const message = `🟢 *NEW ORDER FROM MATCHA & MINT* 🟢\n\n` +
+    `📦 *Order ID:* ${orderDetails.orderId}\n` +
+    `📞 *Customer Phone:* ${orderDetails.phone}\n` +
+    `⏰ *Time:* ${orderDetails.time}\n` +
+    `🛒 *Items:*\n${orderDetails.itemsList}\n` +
+    `💰 *Total:* $${orderDetails.total}\n` +
+    `💳 *Payment:* ${orderDetails.paymentMethod}\n` +
+    `🌿 *Status:* Pending confirmation`;
+  
+  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: message, parse_mode: 'Markdown' })
+    });
+    const result = await response.json();
+    if (result.ok) {
+      console.log("✅ Telegram notification sent");
+      return true;
+    } else {
+      console.error("Telegram error:", result);
+      return false;
+    }
+  } catch (err) {
+    console.error("Failed to send to Telegram:", err);
+    return false;
+  }
+}
+
+async function validateAndPlaceOrder() {
+  if (!cart.length) { showToast("Cart is empty"); return; }
+  
+  const phone = validatePhone();
+  if (!phone) return;
+  
   const sub = cart.reduce((s,c) => s+c.price*c.qty, 0);
-  const total = (sub+1.50).toFixed(2);
+  const total = (sub + 1.50).toFixed(2);
   const btc = ((sub+1.50)/BTC_RATE).toFixed(6);
-  const oid = 'MG-'+Math.random().toString(36).substr(2,6).toUpperCase();
-  const time = new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  const oid = 'MG-' + Math.random().toString(36).substr(2,6).toUpperCase();
+  const time = new Date().toLocaleString();
   const count = cart.reduce((s,c)=>s+c.qty,0);
-  document.getElementById('successIcon').textContent = payMethod==='btc'?'₿':'✅';
+  
+  // Build items list string for Telegram
+  const itemsList = cart.map(c => `  • ${c[lang].name} x${c.qty} = $${(c.price*c.qty).toFixed(2)}`).join('\n');
+  
+  const orderDetails = {
+    orderId: oid,
+    phone: phone,
+    time: time,
+    itemsList: itemsList,
+    total: total,
+    paymentMethod: payMethod === 'btc' ? 'Bitcoin (₿)' : 'Cash on Delivery (💵)',
+    rawCart: cart
+  };
+  
+  // Send to Telegram (asynchronous, doesn't block order flow)
+  await sendOrderToTelegram(orderDetails);
+  
+  // Show success screen
+  document.getElementById('successIcon').textContent = payMethod === 'btc' ? '₿' : '✅';
   document.getElementById('successTitle').textContent = tr('successTitle');
-  document.getElementById('successSub').innerHTML = payMethod==='btc' ? tr('successSubBtc', btc) : tr('successSubCod', total);
+  document.getElementById('successSub').innerHTML = payMethod === 'btc' ? tr('successSubBtc', btc) : tr('successSubCod', total);
   document.getElementById('successDetails').innerHTML = `
     <div class="so-row"><span>${tr('orderId')}</span><span>${oid}</span></div>
-    <div class="so-row"><span>${tr('orderTime')}</span><span>${time}</span></div>
+    <div class="so-row"><span>📞 Phone</span><span>${phone}</span></div>
+    <div class="so-row"><span>${tr('orderTime')}</span><span>${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</span></div>
     <div class="so-row"><span>${tr('orderItems')}</span><span>${tr('itemsCount',count)}</span></div>
     <div class="so-row"><span>${tr('orderTotal')}</span><span>$${total}</span></div>
     <div class="so-row"><span>${tr('orderPayment')}</span><span>${payMethod==='btc'?tr('btcPayLabel'):tr('codPayLabel')}</span></div>`;
-  if (window.Telegram?.WebApp) window.Telegram.WebApp.sendData(JSON.stringify({ orderId:oid, total, payment:payMethod, items: cart.map(c=>({name:c.en.name, qty:c.qty, price:c.price})) }));
-  cart=[]; updateCartBadge(); closeCart();
+  
+  if (window.Telegram?.WebApp) {
+    window.Telegram.WebApp.sendData(JSON.stringify({ orderId: oid, phone, total, payment: payMethod, items: cart.map(c=>({name:c.en.name, qty:c.qty, price:c.price})) }));
+  }
+  
+  cart = [];
+  updateCartBadge();
+  closeCart();
   document.getElementById('successScreen').classList.add('show');
 }
-function closeSuccess() { document.getElementById('successScreen').classList.remove('show'); payMethod='cod'; selectPay('cod'); }
+
+function closeSuccess() { document.getElementById('successScreen').classList.remove('show'); payMethod='cod'; selectPay('cod'); document.getElementById('phoneInput').value = ''; }
 function showToast(msg) {
   const t = document.createElement('div');
   t.innerHTML = msg;
-  Object.assign(t.style, { position:'fixed', bottom:'110px', left:'50%', transform:'translateX(-50%)', background:'#2c6e49', color:'#f9fbe7', padding:'10px 20px', borderRadius:'50px', fontSize:'13px', fontWeight:'600', border:'1px solid #cfe0c3', zIndex:'400', whiteSpace:'nowrap', fontFamily: lang==='ar' ? 'Tajawal,sans-serif' : 'DM Sans,sans-serif' });
+  Object.assign(t.style, { position:'fixed', bottom:'110px', left:'50%', transform:'translateX(-50%)', background:'#2c6e49', color:'#f9fbe7', padding:'10px 20px', borderRadius:'50px', fontSize:'13px', fontWeight:'600', border:'1px solid #cfe0c3', zIndex:'400', whiteSpace:'nowrap' });
   document.body.appendChild(t);
   setTimeout(() => t.remove(), 2200);
 }
+
 if (window.Telegram?.WebApp) { const tg = window.Telegram.WebApp; tg.ready(); tg.expand(); tg.setHeaderColor('#2b5e3b'); tg.setBackgroundColor('#eef4e6'); if (tg.initDataUnsafe?.user?.language_code === 'ar') { lang = 'ar'; document.documentElement.setAttribute('lang', 'ar'); document.documentElement.setAttribute('dir', 'rtl'); } }
 applyI18n(); renderTabs(); renderMenu('all'); selectPay('cod');
 </script>
