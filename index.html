@@ -34,12 +34,6 @@
     padding-bottom: 100px;
   }
 
-  html[lang="ar"] body,
-  html[lang="ar"] button,
-  html[lang="ar"] input {
-    font-family: 'Tajawal', sans-serif;
-  }
-
   .header {
     background: linear-gradient(135deg, #2b5e3b 0%, #1c402a 100%);
     padding: 20px 20px 16px;
@@ -63,9 +57,7 @@
     font-size: 12px; font-weight: 700;
     color: #f9fbe7;
     cursor: pointer;
-    transition: all 0.2s;
   }
-  .lang-btn:active { transform: scale(0.95); }
 
   .cart-btn {
     background: rgba(255,255,240,0.2);
@@ -79,12 +71,8 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: all 0.2s;
-    position: relative;
-    overflow: hidden;
   }
-  .cart-btn:active { transform: scale(0.95); }
-  
+
   .cart-icon-wrapper {
     position: relative;
     display: inline-flex;
@@ -96,11 +84,6 @@
     font-size: 16px;
     transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
     display: inline-block;
-  }
-  
-  .cart-btn.loaded-state {
-    background: rgba(76, 149, 108, 0.3);
-    border-color: var(--accent2);
   }
   
   .cart-btn.loaded-state .cart-emoji {
@@ -141,7 +124,6 @@
     align-items: center;
     justify-content: center;
     padding: 0 4px;
-    transition: all 0.2s cubic-bezier(0.34, 1.2, 0.64, 1);
   }
   
   .badge-bounce {
@@ -170,19 +152,16 @@
     display: flex; gap: 8px;
     padding: 16px 20px;
     overflow-x: auto;
-    scrollbar-width: none;
   }
-  .tabs::-webkit-scrollbar { display: none; }
   .tab {
     padding: 7px 16px; border-radius: 50px;
     background: var(--card); border: 1px solid var(--border);
     font-size: 13px; white-space: nowrap;
     cursor: pointer; color: #5b7c4a;
-    transition: all 0.2s;
   }
   .tab.active {
     background: var(--accent); border-color: var(--accent);
-    color: #fff; font-weight: 600;
+    color: #fff;
   }
 
   .section-title {
@@ -196,11 +175,9 @@
   }
   .menu-item {
     background: var(--card); border: 1px solid var(--border);
-    border-radius: 20px; overflow: hidden;
+    border-radius: 20px;
     cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.2s;
   }
-  .menu-item:active { transform: scale(0.97); }
   .item-emoji {
     font-size: 48px; text-align: center;
     padding: 18px 0 10px;
@@ -233,7 +210,7 @@
 
   .overlay {
     position: fixed; inset: 0; background: rgba(30, 40, 20, 0.6);
-    z-index: 200; display: none; backdrop-filter: blur(4px);
+    z-index: 200; display: none;
   }
   .overlay.open { display: block; }
 
@@ -281,21 +258,11 @@
   .empty-cart {
     text-align: center;
     padding: 48px 24px;
-    animation: emptyStateAppear 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-  }
-  @keyframes emptyStateAppear {
-    0% { opacity: 0; transform: scale(0.94) translateY(12px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
   }
   .empty-cart .e-icon {
     font-size: 58px;
     margin-bottom: 16px;
     opacity: 0.65;
-    animation: gentleFloat 0.7s ease;
-  }
-  @keyframes gentleFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
   }
   
   .cart-item {
@@ -306,13 +273,7 @@
     margin-bottom: 8px;
     background: white;
     border-radius: 20px;
-    box-shadow: var(--shadow-sm);
     border: 1px solid var(--border);
-    animation: itemSlideIn 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-  }
-  @keyframes itemSlideIn {
-    0% { opacity: 0; transform: translateY(20px) scale(0.96); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
   }
   
   .ci-emoji {
@@ -366,7 +327,6 @@
     font-size: 14px;
     padding: 6px 0;
     color: #446b50;
-    font-weight: 500;
   }
   .summary-row.total {
     font-size: 18px;
@@ -378,21 +338,20 @@
   }
 
   .phone-section { padding: 16px 20px 8px; }
-  .phone-label { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 8px; display: block; text-transform: uppercase; letter-spacing: 0.8px; }
+  .phone-label { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 8px; display: block; }
   .phone-input { width: 100%; padding: 14px 18px; border-radius: 30px; border: 1.5px solid var(--border); background: white; font-size: 15px; outline: none; }
-  .phone-input:focus { border-color: var(--accent); }
-  .phone-error { font-size: 11px; color: #d9534f; margin-top: 6px; padding-left: 8px; display: none; }
+  .phone-error { font-size: 11px; color: #d9534f; margin-top: 6px; display: none; }
   .phone-error.show { display: block; }
 
   .payment-section { padding: 8px 20px 0; }
-  .pay-label { font-size: 12px; color: #608a6b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 700; }
+  .pay-label { font-size: 12px; color: #608a6b; margin-bottom: 10px; font-weight: 700; }
   .pay-methods { display: flex; gap: 12px; }
   .pay-method { flex: 1; padding: 14px 10px; border-radius: 20px; border: 2px solid #cfdfc1; background: white; cursor: pointer; text-align: center; }
   .pay-method.selected { border-color: var(--accent); background: #eef6e6; }
 
   .btc-box { margin: 12px 20px; background: #fef9e6; border: 1px solid #fce6b4; border-radius: 20px; padding: 14px; display: none; }
   .btc-box.show { display: block; }
-  .btc-address { font-size: 11px; background: #fafcf5; padding: 8px 10px; border-radius: 12px; cursor: pointer; direction: ltr; text-align: left; }
+  .btc-address { font-size: 11px; background: #fafcf5; padding: 8px 10px; border-radius: 12px; cursor: pointer; }
 
   .checkout-wrap { padding: 16px 20px 24px; }
   .checkout-btn { width: 100%; padding: 18px; border-radius: 50px; border: none; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; font-size: 17px; font-weight: 800; cursor: pointer; }
@@ -419,9 +378,9 @@
 <body>
 
 <div class="header">
-  <div class="logo" id="logoEl">Tanger<span>&</span>Coffee</div>
+  <div class="logo">Tanger<span>&</span>Coffee</div>
   <div class="header-right">
-    <button class="lang-btn" id="langBtn" onclick="toggleLang()">عربي</button>
+    <button class="lang-btn" onclick="toggleLang()">عربي</button>
     <button class="cart-btn empty-state" id="cartBtn" onclick="openCart()">
       <span class="cart-icon-wrapper">
         <span class="cart-emoji" id="cartEmoji">🛒</span>
@@ -433,12 +392,12 @@
 </div>
 
 <div class="hero">
-  <h1 id="heroTitle">Your fresh<br>cup of <em>nature</em></h1>
-  <p id="heroSub">Organic · Pay with Cash or Bitcoin ₿</p>
+  <h1>Your fresh<br>cup of <em>nature</em></h1>
+  <p>Organic · Pay with Cash or Bitcoin ₿</p>
 </div>
 
 <div class="tabs" id="tabsEl"></div>
-<div class="section-title" id="menuTitle">Our Menu 🌱</div>
+<div class="section-title">Our Menu 🌱</div>
 <div class="menu-grid" id="menuGrid"></div>
 
 <div class="overlay" id="overlay" onclick="closeCart()"></div>
@@ -446,28 +405,28 @@
 <div class="cart-sheet" id="cartSheet">
   <div class="sheet-handle"></div>
   <div class="sheet-title">
-    <span id="cartSheetTitle">Your Order 🍃</span>
+    <span>Your Order 🍃</span>
     <button class="close-sheet" onclick="closeCart()">✕</button>
   </div>
   <div class="cart-items" id="cartItemsEl"></div>
   <div class="order-summary" id="orderSummary"></div>
   <div class="phone-section">
-    <div class="phone-label" id="phoneLabel">📞 PHONE NUMBER</div>
+    <div class="phone-label">📞 PHONE NUMBER</div>
     <input type="tel" class="phone-input" id="phoneInput" placeholder="+1234567890" value="">
     <div class="phone-error" id="phoneError">Please enter a valid phone number</div>
   </div>
   <div class="payment-section">
-    <div class="pay-label" id="payLabel">Payment Method</div>
+    <div class="pay-label">Payment Method</div>
     <div class="pay-methods">
-      <div class="pay-method selected" id="payCoD" onclick="selectPay('cod')"><div class="pay-icon">💵</div><div class="pay-name" id="codName">Cash on Delivery</div><div class="pay-desc" id="codDesc">Pay when you receive</div></div>
-      <div class="pay-method btc" id="payBtc" onclick="selectPay('btc')"><div class="pay-icon">₿</div><div class="pay-name" id="btcName">Bitcoin</div><div class="pay-desc" id="btcDesc">Crypto payment</div></div>
+      <div class="pay-method selected" onclick="selectPay('cod')"><div class="pay-icon">💵</div><div class="pay-name">Cash on Delivery</div><div class="pay-desc">Pay when you receive</div></div>
+      <div class="pay-method btc" onclick="selectPay('btc')"><div class="pay-icon">₿</div><div class="pay-name">Bitcoin</div><div class="pay-desc">Crypto payment</div></div>
     </div>
   </div>
   <div class="btc-box" id="btcBox">
-    <div class="btc-title" id="btcSendLabel">₿ SEND BITCOIN TO:</div>
-    <div class="btc-address" id="btcAddr" onclick="copyBTC()">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</div>
-    <div class="btc-amount"><span id="btcAmountLabel">Amount to send:</span> <span id="btcTotal">≈ 0.00000 BTC</span></div>
-    <div class="copy-hint" id="btcCopyHint">👆 Tap address to copy</div>
+    <div class="btc-title">₿ SEND BITCOIN TO:</div>
+    <div class="btc-address" onclick="copyBTC()">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</div>
+    <div class="btc-amount"><span>Amount to send:</span> <span id="btcTotal">≈ 0.00000 BTC</span></div>
+    <div class="copy-hint">👆 Tap address to copy</div>
   </div>
   <div class="checkout-wrap">
     <button class="checkout-btn" id="checkoutBtn" onclick="validateAndPlaceOrder()" disabled>Place Order</button>
@@ -475,26 +434,23 @@
 </div>
 
 <div class="success-screen" id="successScreen">
-  <div class="success-icon" id="successIcon">🌱</div>
-  <div class="success-title" id="successTitle">Order Placed!</div>
+  <div class="success-icon">🌱</div>
+  <div class="success-title">Order Placed!</div>
   <div class="success-sub" id="successSub"></div>
   <div class="success-order" id="successDetails"></div>
-  <button class="close-success" onclick="closeSuccess()" id="backToMenuBtn">Back to Menu</button>
+  <button class="close-success" onclick="closeSuccess()">Back to Menu</button>
 </div>
 
 <script>
 // ============================================================
-// ✅ YOUR TELEGRAM CREDENTIALS (Already Added!)
+// 🔴 IMPORTANT: REPLACE WITH YOUR PERSONAL CHAT ID
+// Get it from @userinfobot on Telegram
 // ============================================================
 const TELEGRAM_BOT_TOKEN = "8690558257:AAE36DUv7zpUn2jdbyB3xq4-I2elR4C5TRw";
-const TELEGRAM_CHAT_ID = "1949310240";
+const TELEGRAM_CHAT_ID = "1949310240";  // 👈 REPLACE THIS with your ID from @userinfobot
+// ============================================================
 
-// i18n Data
-const i18n = {
-  en: { langBtn:'عربي', cartLabel:'Cart', heroTitle:'Your fresh<br>cup of <em>nature</em>', heroSub:'Organic · Pay with Cash or Bitcoin ₿', menuTitle:'Our Menu 🌱', cartSheetTitle:'Your Order 🍃', phoneLabel:'📞 PHONE NUMBER', payLabel:'Payment Method', codName:'Cash on Delivery', codDesc:'Pay when you receive', btcName:'Bitcoin', btcDesc:'Crypto payment', btcSendLabel:'₿ SEND BITCOIN TO:', btcAmountLabel:'Amount to send:', btcCopyHint:'👆 Tap address to copy', checkoutCod:'Place Order — Cash on Delivery', checkoutBtc:"✓ I've Sent Bitcoin", successTitle:'Order Placed!', successSubBtc:(a)=>`Bitcoin payment of ${a} BTC confirmed.<br>Your order is in the queue!`, successSubCod:(t)=>`Pay $${t} cash when delivered.<br>Estimated: 15–20 min`, orderId:'Order ID', orderTime:'Time', orderItems:'Items', orderTotal:'Total', orderPayment:'Payment', btcPayLabel:'₿ Bitcoin', codPayLabel:'💵 Cash', itemsCount:(n)=>`${n} item(s)`, backToMenu:'Back to Menu', subtotal:'Subtotal', delivery:'Delivery', total:'Total', emptyCart:'Your cart is empty.<br>Add some organic coffee!', toastAdded:(name)=>`${name} added!`, toastCopied:'₿ Address copied!', popular:'★ Popular', phoneErrorMsg:'Valid phone required', tabs:[{key:'all',label:'🌿 All'},{key:'hot',label:'🍀 Hot'},{key:'cold',label:'🍁 Cold'},{key:'food',label:'🥐 Food'},{key:'special',label:'⭐ Special'}] },
-  ar: { langBtn:'English', cartLabel:'السلة', heroTitle:'كوبك الطازج<br>من <em>الطبيعة</em>', heroSub:'عضوي · ادفع نقداً أو بالبيتكوين ₿', menuTitle:'قائمة طعامنا 🌱', cartSheetTitle:'طلبك 🍃', phoneLabel:'📞 رقم الهاتف', payLabel:'طريقة الدفع', codName:'الدفع عند الاستلام', codDesc:'ادفع عند وصول الطلب', btcName:'بيتكوين', btcDesc:'دفع بالعملة الرقمية', btcSendLabel:'₿ أرسل البيتكوين إلى:', btcAmountLabel:'المبلغ المطلوب:', btcCopyHint:'👆 اضغط على العنوان للنسخ', checkoutCod:'تأكيد الطلب — الدفع عند الاستلام', checkoutBtc:'✓ لقد أرسلت البيتكوين', successTitle:'تم الطلب!', successSubBtc:(a)=>`تم تأكيد دفع ${a} BTC.<br>طلبك في قائمة الانتظار!`, successSubCod:(t)=>`ادفع $${t} نقداً عند الاستلام.<br>الوقت المتوقع: ١٥–٢٠ دقيقة`, orderId:'رقم الطلب', orderTime:'الوقت', orderItems:'العناصر', orderTotal:'الإجمالي', orderPayment:'طريقة الدفع', btcPayLabel:'₿ بيتكوين', codPayLabel:'💵 نقداً', itemsCount:(n)=>`${n} عنصر`, backToMenu:'العودة للقائمة', subtotal:'المجموع الفرعي', delivery:'التوصيل', total:'الإجمالي', emptyCart:'سلتك فارغة.<br>أضف قهوتك العضوية!', toastAdded:(name)=>`تمت إضافة ${name}!`, toastCopied:'₿ تم نسخ العنوان!', popular:'★ الأكثر طلباً', phoneErrorMsg:'رقم هاتف صالح مطلوب', tabs:[{key:'all',label:'☕ الكل'},{key:'hot',label:'🔥 ساخن'},{key:'cold',label:'🧊 بارد'},{key:'food',label:'🥐 طعام'},{key:'special',label:'⭐ مميز'}] }
-};
-
+// Menu Data
 const menu = [
   { id:1, emoji:'🍁', price:2.50, cat:'hot', popular:true, en:{name:'Espresso', desc:'Pure & intense'}, ar:{name:'إسبريسو', desc:'جرعة قوية'} },
   { id:2, emoji:'🍵', price:3.80, cat:'hot', en:{name:'Cappuccino', desc:'Creamy foam'}, ar:{name:'كابتشينو', desc:'رغوة كريمية'} },
@@ -512,33 +468,22 @@ const menu = [
 
 const BTC_RATE = 68000;
 let cart = [], payMethod = 'cod', currentCat = 'all', lang = 'en';
-const L = () => i18n[lang];
-const tr = (key, ...a) => { const v = L()[key]; return typeof v === 'function' ? v(...a) : v; };
 
-// Telegram Mini App Initialization
+// Telegram Mini App Init
 if(window.Telegram?.WebApp) { 
   const tg = window.Telegram.WebApp; 
   tg.ready(); 
   tg.expand(); 
-  tg.setHeaderColor('#2b5e3b'); 
-  tg.setBackgroundColor('#eef4e6'); 
-  if(tg.initDataUnsafe?.user?.language_code === 'ar') { 
-    lang='ar'; 
-    document.documentElement.setAttribute('lang','ar'); 
-    document.documentElement.setAttribute('dir','rtl'); 
-  } 
 }
 
-function updateCartButtonAnimation() {
-  const cartBtn = document.getElementById('cartBtn');
-  const hasItems = cart.length > 0;
-  if (hasItems) {
-    cartBtn.classList.remove('empty-state');
-    cartBtn.classList.add('loaded-state', 'has-items');
-  } else {
-    cartBtn.classList.remove('loaded-state', 'has-items');
-    cartBtn.classList.add('empty-state');
-  }
+function addToCart(id) {
+  const item = menu.find(m => m.id === id);
+  const ex = cart.find(c => c.id === id);
+  if (ex) { ex.qty++; } else { cart.push({...item, qty:1}); }
+  updateCartBadge();
+  animateCartLogo();
+  showToast(`${item.emoji} added!`);
+  if (document.getElementById('cartSheet').classList.contains('open')) renderCart();
 }
 
 function animateCartLogo() {
@@ -555,78 +500,67 @@ function animateCartLogo() {
   setTimeout(() => sparkle.remove(), 500);
 }
 
-function addToCart(id) {
-  const item = menu.find(m => m.id === id);
-  const ex = cart.find(c => c.id === id);
-  if (ex) { ex.qty++; } else { cart.push({...item, qty:1}); }
-  updateCartBadge();
-  animateCartLogo();
-  updateCartButtonAnimation();
-  showToast(`${item.emoji} ${tr('toastAdded', item[lang].name)}`);
-  if (document.getElementById('cartSheet').classList.contains('open')) renderCart();
-}
-
 function updateCartBadge() {
   const count = cart.reduce((s,c)=>s+c.qty,0);
   const badge = document.getElementById('cartCount');
   badge.textContent = count;
   badge.classList.add('badge-bounce');
   setTimeout(() => badge.classList.remove('badge-bounce'), 200);
-  updateCartButtonAnimation();
+  const cartBtn = document.getElementById('cartBtn');
+  if (cart.length > 0) {
+    cartBtn.classList.add('loaded-state');
+  } else {
+    cartBtn.classList.remove('loaded-state');
+  }
 }
 
-function toggleLang() { lang = lang === 'en' ? 'ar' : 'en'; document.documentElement.setAttribute('lang', lang); document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr'); applyI18n(); renderTabs(); renderMenu(currentCat); if(document.getElementById('cartSheet').classList.contains('open')) renderCart(); }
-function applyI18n() { const ids = ['langBtn','cartLabel','heroTitle','heroSub','menuTitle','cartSheetTitle','phoneLabel','payLabel','codName','codDesc','btcName','btcDesc','btcSendLabel','btcAmountLabel','btcCopyHint','backToMenuBtn']; ids.forEach(id => { const el = document.getElementById(id); if(el) el.innerHTML = L()[id]; }); const btn = document.getElementById('checkoutBtn'); if(!btn.disabled) btn.textContent = tr(payMethod === 'btc' ? 'checkoutBtc' : 'checkoutCod'); document.getElementById('phoneError').textContent = tr('phoneErrorMsg'); }
-function renderTabs() { document.getElementById('tabsEl').innerHTML = L().tabs.map(tab => `<div class="tab${currentCat === tab.key ? ' active' : ''}" onclick="filterCat('${tab.key}', this)">${tab.label}</div>`).join(''); }
-function renderMenu(cat) { const items = cat === 'all' ? menu : menu.filter(m => m.cat === cat); document.getElementById('menuGrid').innerHTML = items.map(item => `<div class="menu-item${item.popular ? ' popular' : ''}" onclick="addToCart(${item.id})">${item.popular ? `<span class="badge">${tr('popular')}</span>` : ''}<div class="item-emoji">${item.emoji}</div><div class="item-info"><div class="item-name">${item[lang].name}</div><div class="item-desc">${item[lang].desc}</div><div class="item-footer"><div class="item-price">$${item.price.toFixed(2)}</div><button class="add-btn" onclick="event.stopPropagation();addToCart(${item.id})">+</button></div></div></div>`).join(''); }
+function renderTabs() {
+  const tabs = [{key:'all',label:'🌿 All'},{key:'hot',label:'🍀 Hot'},{key:'cold',label:'🍁 Cold'},{key:'food',label:'🥐 Food'},{key:'special',label:'⭐ Special'}];
+  document.getElementById('tabsEl').innerHTML = tabs.map(tab => `<div class="tab${currentCat === tab.key ? ' active' : ''}" onclick="filterCat('${tab.key}', this)">${tab.label}</div>`).join('');
+}
+
+function renderMenu(cat) {
+  const items = cat === 'all' ? menu : menu.filter(m => m.cat === cat);
+  document.getElementById('menuGrid').innerHTML = items.map(item => `<div class="menu-item${item.popular ? ' popular' : ''}" onclick="addToCart(${item.id})">${item.popular ? `<span class="badge">★ Popular</span>` : ''}<div class="item-emoji">${item.emoji}</div><div class="item-info"><div class="item-name">${item.en.name}</div><div class="item-desc">${item.en.desc}</div><div class="item-footer"><div class="item-price">$${item.price.toFixed(2)}</div><button class="add-btn" onclick="event.stopPropagation();addToCart(${item.id})">+</button></div></div></div>`).join('');
+}
+
 function filterCat(cat, el) { currentCat = cat; document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); el.classList.add('active'); renderMenu(cat); }
 function openCart() { renderCart(); document.getElementById('overlay').classList.add('open'); document.getElementById('cartSheet').classList.add('open'); }
 function closeCart() { document.getElementById('overlay').classList.remove('open'); document.getElementById('cartSheet').classList.remove('open'); }
 
-async function renderCart() {
+function renderCart() {
   const el = document.getElementById('cartItemsEl');
   if (cart.length === 0) {
-    el.innerHTML = `<div class="empty-cart"><div class="e-icon">🌿🍃</div><p>${tr('emptyCart')}</p></div>`;
+    el.innerHTML = `<div class="empty-cart"><div class="e-icon">🌿🍃</div><p>Your cart is empty.<br>Add some organic coffee!</p></div>`;
     document.getElementById('orderSummary').innerHTML = '';
     document.getElementById('checkoutBtn').disabled = true;
     document.getElementById('btcBox').classList.remove('show');
     return;
   }
-  const html = cart.map(c => `<div class="cart-item" data-id="${c.id}"><div class="ci-emoji">${c.emoji}</div><div class="ci-info"><div class="ci-name">${c[lang].name}</div><div class="ci-price">$${(c.price * c.qty).toFixed(2)}</div></div><div class="ci-qty"><button class="qty-btn" onclick="changeQty(${c.id},-1)">−</button><span class="qty-num">${c.qty}</span><button class="qty-btn" onclick="changeQty(${c.id},1)">+</button></div></div>`).join('');
+  const html = cart.map(c => `<div class="cart-item"><div class="ci-emoji">${c.emoji}</div><div class="ci-info"><div class="ci-name">${c.en.name}</div><div class="ci-price">$${(c.price * c.qty).toFixed(2)}</div></div><div class="ci-qty"><button class="qty-btn" onclick="changeQty(${c.id},-1)">−</button><span class="qty-num">${c.qty}</span><button class="qty-btn" onclick="changeQty(${c.id},1)">+</button></div></div>`).join('');
   el.innerHTML = html;
   const sub = cart.reduce((s,c)=>s+c.price*c.qty,0); const total = sub + 1.50;
-  document.getElementById('orderSummary').innerHTML = `<div class="summary-row"><span>${tr('subtotal')}</span><span>$${sub.toFixed(2)}</span></div><div class="summary-row"><span>${tr('delivery')}</span><span>$${1.50.toFixed(2)}</span></div><div class="summary-row total"><span>${tr('total')}</span><span>$${total.toFixed(2)}</span></div>`;
+  document.getElementById('orderSummary').innerHTML = `<div class="summary-row"><span>Subtotal</span><span>$${sub.toFixed(2)}</span></div><div class="summary-row"><span>Delivery</span><span>$${1.50.toFixed(2)}</span></div><div class="summary-row total"><span>Total</span><span>$${total.toFixed(2)}</span></div>`;
   document.getElementById('btcTotal').textContent = `≈ ${(total/BTC_RATE).toFixed(6)} BTC`;
-  document.getElementById('checkoutBtn').disabled = false; 
-  document.getElementById('checkoutBtn').textContent = tr(payMethod==='btc'?'checkoutBtc':'checkoutCod');
+  document.getElementById('checkoutBtn').disabled = false;
+  document.getElementById('checkoutBtn').textContent = payMethod === 'btc' ? "✓ I've Sent Bitcoin" : "Place Order — Cash on Delivery";
   if (payMethod === 'btc') document.getElementById('btcBox').classList.add('show'); else document.getElementById('btcBox').classList.remove('show');
-  document.querySelector('.order-summary')?.classList.add('summary-update'); 
-  setTimeout(() => document.querySelector('.order-summary')?.classList.remove('summary-update'), 250);
 }
 
-async function changeQty(id, d) {
+function changeQty(id, d) {
   const idx = cart.findIndex(c => c.id === id);
   if(idx < 0) return;
   const newQty = cart[idx].qty + d;
-  if(newQty <= 0) {
-    const itemDiv = document.querySelector(`.cart-item[data-id="${id}"]`);
-    if(itemDiv) { itemDiv.classList.add('cart-item-removing'); await new Promise(r => setTimeout(r, 200)); }
-    cart.splice(idx,1);
-    updateCartButtonAnimation();
-  } else { 
-    cart[idx].qty = newQty; 
-    const qtySpan = document.querySelector(`.cart-item[data-id="${id}"] .qty-num`); 
-    if(qtySpan) { qtySpan.classList.add('qty-pulse'); setTimeout(() => qtySpan.classList.remove('qty-pulse'), 150); } 
-  }
+  if(newQty <= 0) { cart.splice(idx,1); } else { cart[idx].qty = newQty; }
   updateCartBadge();
   renderCart();
 }
 
-function selectPay(m) { payMethod = m; document.getElementById('payCoD').classList.toggle('selected', m==='cod'); document.getElementById('payBtc').classList.toggle('selected', m==='btc'); const box = document.getElementById('btcBox'); if(m==='btc' && cart.length) box.classList.add('show'); else box.classList.remove('show'); const btn = document.getElementById('checkoutBtn'); if(!btn.disabled) btn.textContent = tr(m==='btc'?'checkoutBtc':'checkoutCod'); }
-function copyBTC() { navigator.clipboard.writeText('bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh').then(() => showToast(tr('toastCopied'))); }
+function selectPay(m) { payMethod = m; document.querySelectorAll('.pay-method').forEach(p => p.classList.remove('selected')); document.getElementById(m === 'cod' ? 'payCoD' : 'payBtc').classList.add('selected'); const box = document.getElementById('btcBox'); if(m === 'btc' && cart.length) box.classList.add('show'); else box.classList.remove('show'); const btn = document.getElementById('checkoutBtn'); if(!btn.disabled) btn.textContent = m === 'btc' ? "✓ I've Sent Bitcoin" : "Place Order — Cash on Delivery"; }
+function copyBTC() { navigator.clipboard.writeText('bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh').then(() => showToast('₿ Address copied!')); }
 function validatePhone() { const phone = document.getElementById('phoneInput').value.trim(); const regex = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{4,12}$/; if(!phone || !regex.test(phone)) { document.getElementById('phoneError').classList.add('show'); return null; } document.getElementById('phoneError').classList.remove('show'); return phone; }
 
-// ✅ FIXED: This will ALWAYS send Telegram notifications
+// ✅ THIS SENDS ORDERS TO YOUR PERSONAL TELEGRAM ACCOUNT
 async function sendOrderToTelegram(orderDetails) {
   const message = `🟢 NEW ORDER FROM TANGER COFFEE 🟢\n\n` +
     `📦 Order ID: ${orderDetails.orderId}\n` +
@@ -644,9 +578,9 @@ async function sendOrderToTelegram(orderDetails) {
     });
     const result = await response.json();
     if(result.ok) {
-      console.log("✅ Telegram notification sent!");
+      console.log("✅ Order sent to your Telegram!");
     } else {
-      console.log("❌ Telegram error:", result.description);
+      console.log("❌ Error:", result.description);
     }
   } catch(e) { 
     console.error("Failed to send:", e); 
@@ -662,31 +596,27 @@ async function validateAndPlaceOrder() {
   const btc = ((sub+1.50)/BTC_RATE).toFixed(6); 
   const oid = 'MG-'+Math.random().toString(36).substr(2,6).toUpperCase(); 
   const time = new Date().toLocaleString();
-  const itemsList = cart.map(c=>`  • ${c[lang].name} x${c.qty} = $${(c.price*c.qty).toFixed(2)}`).join('\n'); 
+  const itemsList = cart.map(c=>`  • ${c.en.name} x${c.qty} = $${(c.price*c.qty).toFixed(2)}`).join('\n'); 
   
-  // Send to Telegram
+  // Send order to YOUR Telegram account
   await sendOrderToTelegram({ orderId:oid, phone, time, itemsList, total, paymentMethod: payMethod==='btc'?'Bitcoin (₿)':'Cash on Delivery (💵)' }); 
   
   document.getElementById('successIcon').textContent = payMethod==='btc'?'₿':'✅'; 
-  document.getElementById('successTitle').textContent = tr('successTitle'); 
-  document.getElementById('successSub').innerHTML = payMethod==='btc' ? tr('successSubBtc', btc) : tr('successSubCod', total); 
-  document.getElementById('successDetails').innerHTML = `<div class="so-row"><span>${tr('orderId')}</span><span>${oid}</span></div><div class="so-row"><span>📞 Phone</span><span>${phone}</span></div><div class="so-row"><span>${tr('orderTime')}</span><span>${new Date().toLocaleTimeString()}</span></div><div class="so-row"><span>${tr('orderItems')}</span><span>${cart.reduce((s,c)=>s+c.qty,0)} items</span></div><div class="so-row"><span>${tr('orderTotal')}</span><span>$${total}</span></div><div class="so-row"><span>${tr('orderPayment')}</span><span>${payMethod==='btc'?tr('btcPayLabel'):tr('codPayLabel')}</span></div>`; 
-  
-  if(window.Telegram?.WebApp) {
-    window.Telegram.WebApp.sendData(JSON.stringify({ orderId:oid, phone, total, payment:payMethod }));
-  }
+  document.getElementById('successTitle').textContent = 'Order Placed!'; 
+  document.getElementById('successSub').innerHTML = payMethod==='btc' ? `Bitcoin payment of ${btc} BTC confirmed.<br>Your order is in the queue!` : `Pay $${total} cash when delivered.<br>Estimated: 15–20 min`; 
+  document.getElementById('successDetails').innerHTML = `<div class="so-row"><span>Order ID</span><span>${oid}</span></div><div class="so-row"><span>📞 Phone</span><span>${phone}</span></div><div class="so-row"><span>Time</span><span>${new Date().toLocaleTimeString()}</span></div><div class="so-row"><span>Items</span><span>${cart.reduce((s,c)=>s+c.qty,0)} items</span></div><div class="so-row"><span>Total</span><span>$${total}</span></div><div class="so-row"><span>Payment</span><span>${payMethod==='btc'?'₿ Bitcoin':'💵 Cash'}</span></div>`; 
   
   cart = []; 
   updateCartBadge(); 
-  updateCartButtonAnimation(); 
   closeCart(); 
   document.getElementById('successScreen').classList.add('show'); 
 }
 
 function closeSuccess() { document.getElementById('successScreen').classList.remove('show'); payMethod='cod'; selectPay('cod'); document.getElementById('phoneInput').value = ''; }
-function showToast(msg) { const t = document.createElement('div'); t.innerHTML = msg; Object.assign(t.style, { position:'fixed', bottom:'110px', left:'50%', transform:'translateX(-50%)', background:'#2c6e49', color:'#f9fbe7', padding:'10px 20px', borderRadius:'50px', fontSize:'13px', fontWeight:'600', border:'1px solid #cfe0c3', zIndex:'400', whiteSpace:'nowrap' }); document.body.appendChild(t); setTimeout(() => t.remove(), 2200); }
+function toggleLang() { lang = lang === 'en' ? 'ar' : 'en'; }
+function showToast(msg) { const t = document.createElement('div'); t.innerHTML = msg; Object.assign(t.style, { position:'fixed', bottom:'110px', left:'50%', transform:'translateX(-50%)', background:'#2c6e49', color:'#f9fbe7', padding:'10px 20px', borderRadius:'50px', fontSize:'13px', fontWeight:'600', zIndex:'400', whiteSpace:'nowrap' }); document.body.appendChild(t); setTimeout(() => t.remove(), 2200); }
 
-applyI18n(); renderTabs(); renderMenu('all'); selectPay('cod'); updateCartButtonAnimation();
+renderTabs(); renderMenu('all'); selectPay('cod');
 </script>
 </body>
 </html>
